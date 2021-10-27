@@ -22,7 +22,7 @@ const Layout = (props) => {
       </div>
       <footer className="p-3 bg-light">
         <div>
-          <span className="mr-3 text-secondary">Built by <a href="https://www.altcademy.com" target="_blank" rel="noopener noreferrer">Altcademy</a> with ☕ and 💜</span>
+          <span className="mr-3 text-secondary"><a href="https://github.com/Valatulkas" target="_blank" rel="noopener noreferrer">JFerg</a></span>
         </div>
       </footer>
     </React.Fragment>
