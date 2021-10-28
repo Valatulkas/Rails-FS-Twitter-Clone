@@ -1,2 +1,2 @@
 // demo.js
-import '../src/demo';
+import '@src/demo';
