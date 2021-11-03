@@ -6,10 +6,10 @@ import Layout from './layout';
 
 const SubRoute = ({match}) => <p className="p-2 mt-2 border border-light">{match.url}</p>
 
-const Demo = () => (
+const Feed = () => (
   <Router>
     <Layout>
-      <h1>Demo page</h1>
+      <h1>Feed page</h1>
       <ul className="nav">
         <li className="nav-item">
           <Link className="nav-link" to="/demo/a">Link A</Link>
@@ -32,7 +32,7 @@ const Demo = () => (
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Demo />,
+    <Feed />,
     document.body.appendChild(document.createElement('div')),
   )
 })

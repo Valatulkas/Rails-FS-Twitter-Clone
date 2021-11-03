@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root to: "static_pages#home"
-  get 'demo' => 'feeds#demo'
+  get 'feed' => 'feeds#feed'
 
   #users
   post '/users' => 'users#create'
@@ -17,6 +17,6 @@ Rails.application.routes.draw do
   get '/tweets' => 'tweets#index'
   get '/users/:username/tweets' => 'tweets#index_by_user'
 
-  get 'demo/*uri' => 'feeds#demo'
+  get 'feed/*uri' => 'feeds#feed'
 
 end
