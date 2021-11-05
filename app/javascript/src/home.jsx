@@ -20,7 +20,11 @@ const Home = () => (
               <li className="col-xs-12"><a href="#">Bahasa Malaya</a></li>
               <li className="col-xs-12"><a href="#">Dansk</a></li>
               <li className="col-xs-12"><a href="#">English</a></li>
-              <li className="col-xs-12"><a href="#">Suomi</a></li>
+              <li className="col-xs-12"><a href="#">Japanese</a></li>
+              <li className="col-xs-12"><a href="#">Greek</a></li>
+              <li className="col-xs-12"><a href="#">Swahili</a></li>
+              <li className="col-xs-12"><a href="#">Icelandic</a></li>
+              <li className="col-xs-12"><a href="#">Russian</a></li>
             </ul>
           </li>
         </ul>
