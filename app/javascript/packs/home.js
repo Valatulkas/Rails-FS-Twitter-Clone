@@ -129,7 +129,7 @@ function getUserTweets(username, callback) {
 };
   
 // Delete tweet by ID
-function deleteOneTweet(id, callback) {
+function deleteTweet(id, callback) {
     var newRequest = new Request();
     newRequest['type'] = 'DELETE';
     newRequest['url'] = 'tweets/' + id;
