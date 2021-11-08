@@ -38,26 +38,27 @@ const Feed = () => (
     <div className='main'>
       <div className='container'>
         <div className='row'>
-          <div className='col-xs-3'>
+          <div className='col-0 col-md-2'></div>
+          <div className='col-3'>
             <div className="profileCard-content">
               <div className="user-field col-xs-12">
                 <a className="username" href="#">User</a><br/>
                 <a className="screenName" href="#">@User</a>
               </div>
               <div className="user-stats">
-                <div className="col-xs-3">
+                <div className="col-3">
                   <a href="">
                     <span>Tweets<br/></span>
                     <span className="user-stats-tweets">10</span>
                   </a>
                 </div>
-                <div className="col-xs-4">
+                <div className="col-4">
                   <a href="">
                     <span>Following<br/></span>
                     <span className="user-stats-following">0</span>
                   </a>
                 </div>
-                <div className="col-xs-4">
+                <div className="col-4">
                   <a href="">
                     <span>Followers<br/></span>
                     <span className="user-stats-followers">0</span>
@@ -66,7 +67,8 @@ const Feed = () => (
               </div>
             </div>
           </div>
-          <div className='col-xs-6'>
+          <div className='col-0 col-md-1'></div>
+          <div className='col-5'>
             <div className="col-xs-12 post-tweet-box">
               <textarea type="text" className="form-control post-input" rows="3" placeholder="What's happening?"></textarea>
               <div className="pull-right">
@@ -74,7 +76,7 @@ const Feed = () => (
                 <button className="btn btn-primary" disabled id="post-tweet-btn">Tweet</button>
               </div>
             </div>
-            <div className="feed">
+            <div className="feed mt-4">
               <div className="tweet col-12">
                 <a className="tweet-username" href="#">User</a>
                 <a className="tweet-screenName" href="#">@User</a>
@@ -82,9 +84,6 @@ const Feed = () => (
                 <a className="delete-tweet" href="#">Delete</a>
               </div>
             </div>
-          </div>
-          <div className='col-xs-3'>
-
           </div>
         </div>
       </div>

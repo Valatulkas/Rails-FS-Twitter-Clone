@@ -41,11 +41,12 @@ const Home = () => (
     <div className='main'>
       <div className='container'>
         <div className='row'>
-          <div className='col-md-6' id="welcome-text">
+          <div className='col-0 col-md-1'></div>
+          <div className='col-md-5' id="welcome-text">
             <h1><strong>Welcome to Twitter.</strong></h1>
             <p>Connect with your friends &#8212; and other fascinating people. Get in-the-moment updates on the things that interest you. And watch events unfold, in real time, from every angle.</p>
           </div>
-          <div className='col-md-6'>
+          <div className='col-md-5'>
             <form>
               <div className="form-group">
                 <input type="text" class="form-control username" placeholder="Username" />
@@ -62,8 +63,9 @@ const Home = () => (
               <a href="#">Forgot password?</a>
             </form>
           </div>
+          <div className='col-0 col-md-1'></div>
           <div className='col-md-6'></div>
-          <div className='col-md-6'>
+          <div className='col-md-5'>
             <form>
               <div className="new-to-t">
                 <p><strong>New to Twitter?</strong><span> Sign Up</span></p>
@@ -80,6 +82,7 @@ const Home = () => (
               <button id="sign-up-btn" class="btn btn-default btn-warning pull-right">Sign up for Twitter</button>
             </form>
           </div>
+          <div className='1'></div>
         </div>
         <div>
           <span className="mr-3 text-secondary"><a href="https://github.com/Valatulkas" target="_blank" rel="noopener noreferrer">JFerg</a></span>
