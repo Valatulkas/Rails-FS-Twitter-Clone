@@ -46,7 +46,7 @@ const Home = () => (
             <h1><strong>Welcome to Twitter.</strong></h1>
             <p>Connect with your friends &#8212; and other fascinating people. Get in-the-moment updates on the things that interest you. And watch events unfold, in real time, from every angle.</p>
           </div>
-          <div className='col-md-5'>
+          <div className='col-md-4'>
             <form>
               <div className="form-group">
                 <input type="text" class="form-control username" placeholder="Username" />
@@ -54,7 +54,7 @@ const Home = () => (
               <div className="form-group col-xs-8">
                 <input type="password" class="form-control password" placeholder="Password" />
               </div>
-              <button id="log-in-btn" class="btn btn-default btn-primary col-xs-3 col-xs-offset-1">Log in</button>
+              <button id="log-in-btn" class="btn btn-default btn-primary">Log in</button>
               <label>
                 <input type="checkbox" />
                 <span>Remember me</span>
@@ -63,7 +63,7 @@ const Home = () => (
               <a href="#">Forgot password?</a>
             </form>
           </div>
-          <div className='col-0 col-md-1'></div>
+          <div className='col-0 col-md-2'></div>
           <div className='col-md-6'></div>
           <div className='col-md-5'>
             <form>
@@ -82,7 +82,6 @@ const Home = () => (
               <button id="sign-up-btn" class="btn btn-default btn-warning pull-right">Sign up for Twitter</button>
             </form>
           </div>
-          <div className='1'></div>
         </div>
         <div>
           <span className="mr-3 text-secondary"><a href="https://github.com/Valatulkas" target="_blank" rel="noopener noreferrer">JFerg</a></span>
