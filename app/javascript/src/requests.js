@@ -1,11 +1,4 @@
-function Request () {
-    this.type = '';
-    this.url = '';
-    this.data = {};
-    this.dataType = 'json';
-    this.success = function(response) {}
-    this.error = function(response) {}
-};
+import { safeCredentials, handleErrors } from '@utils/fetchHelper';
 
 // User
 function createUser(username, email, password, callback) {
