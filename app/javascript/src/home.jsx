@@ -48,12 +48,12 @@ const Home = () => (
           <div className='col-md-4'>
             <form>
               <div className="form-group">
-                <input type="text" class="form-control username" placeholder="Username" />
+                <input type="text" className="form-control username" placeholder="Username" />
               </div>
               <div className="form-group col-xs-8">
-                <input type="password" class="form-control password" placeholder="Password" />
+                <input type="password" className="form-control password" placeholder="Password" />
               </div>
-              <button id="log-in-btn" class="btn btn-default btn-primary">Log in</button>
+              <button id="log-in-btn" className="btn btn-default btn-primary">Log in</button>
               <label>
                 <input type="checkbox" />
                 <span>Remember me</span>
@@ -70,15 +70,15 @@ const Home = () => (
                 <p><strong>New to Twitter?</strong><span> Sign Up</span></p>
               </div>
               <div className="form-group">
-                <input type="text" class="form-control username" placeholder="Username" />
+                <input type="text" className="form-control username" placeholder="Username" />
               </div>
               <div className="form-group">
-                <input type="email" class="form-control email" placeholder="Email" />
+                <input type="email" className="form-control email" placeholder="Email" />
               </div>
               <div className="form-group">
-                <input type="password" class="form-control password" placeholder="Password" />
+                <input type="password" className="form-control password" placeholder="Password" />
               </div>
-              <button id="sign-up-btn" class="btn btn-default btn-warning pull-right">Sign up for Twitter</button>
+              <button id="sign-up-btn" className="btn btn-default btn-warning pull-right">Sign up for Twitter</button>
             </form>
           </div>
         </div>
