@@ -4,5 +4,4 @@ class FeedsController < ApplicationController
         render 'feed'
     end
     
-
 end
