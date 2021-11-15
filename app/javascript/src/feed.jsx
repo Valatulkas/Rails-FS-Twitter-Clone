@@ -200,16 +200,16 @@ import './feed.scss';
 const Feed = (props) => (
   <React.Fragment>
     <nav className='navbar'>
-    <h1>Feed Page</h1>
       <div className='container'>
         <div className='navbar-header'>
+          <h1>Twitter Feed Page</h1>
           <a className="navbar-brand" href="#">
             <i className="fa fa-twitter"></i>
           </a>
         </div>
         <ul className='nav navbar-right'>
           <li className='dropdown'>
-            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User</a>
+            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span id='user-icon'>User</span></a>
             <ul className="dropdown-menu row" role="menu">
               <li ><a href="#" className="username">User</a></li>
               <li ><a href="#">Lists</a></li>
@@ -220,14 +220,14 @@ const Feed = (props) => (
             </ul>
           </li>
         </ul>
-        <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link" href="/">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/feed">Feed</a>
-            </li>
-        </ul> 
+        <div className='search-bar col-xs-3 nav navbar-right'>
+          <div className='input-group'>
+            <input type="text" class="form-control search-input" placeholder="Search for..." />
+            <span class="input-group-btn">
+              <button class="btn btn-default search-btn" type="button">Go!</button>
+            </span>
+          </div>
+        </div>
       </div>
     </nav>
     <div className='main'>
@@ -259,6 +259,19 @@ const Feed = (props) => (
                     <span className="user-stats-followers">0</span>
                   </a>
                 </div>
+              </div>
+            </div>
+            <div class="trends col-xs-12">
+              <div class="col-xs-12">
+                <div class="trends-header">
+                  <span>Trends</span><span> &#183; </span><small><a href="">Change</a></small>      
+                </div>
+                <ul class="trends-list">
+                  <li><a href="#">#Ruby</a></li>
+                  <li><a href="#">#React</a></li>
+                  <li><a href="#">#Rails</a></li>
+                  <li><a href="#">#API</a></li>
+                </ul>
               </div>
             </div>
           </div>

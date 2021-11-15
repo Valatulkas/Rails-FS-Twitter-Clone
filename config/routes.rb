@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root to: "static_pages#home"
-  get 'feed' => 'feeds#feed'
+  get '/feed' => 'feeds#feed'
   
   namespace :api do
     #users
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     delete '/tweets/:id' => 'tweets#destroy'
     get '/tweets' => 'tweets#index'
     get '/users/:username/tweets' => 'tweets#index_by_user'
-  
-    get 'feed/*uri' => 'feeds#feed'
   end
+
+  get '*path' => 'homepage#index'
 end
