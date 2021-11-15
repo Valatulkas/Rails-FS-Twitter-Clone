@@ -2,7 +2,7 @@ module Api
     class TweetsController < ApplicationController
         def index
             @tweets = Tweet.all.order(created_at: :desc)
-            render 'tweets/index.jbuilder'
+            render 'api/tweets/index.jbuilder'
         end
 
         def index_by_user
@@ -10,7 +10,7 @@ module Api
 
             if session
                 @tweets = user.tweets
-                render 'tweets/index.jbuilder'
+                render 'api/tweets/index.jbuilder'
             else
                 render json: { tweets: [] }
             end

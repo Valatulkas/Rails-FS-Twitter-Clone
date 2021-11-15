@@ -4,12 +4,7 @@ module Api
             @user = User.new(user_params)
 
             if @user
-                render json: {
-                    user: {
-                        username: 'test',
-                        email: 'test@test.com'
-                    }
-                }
+                render 'api/users/create.jbuilder'
                 
             else
                 render json: {
