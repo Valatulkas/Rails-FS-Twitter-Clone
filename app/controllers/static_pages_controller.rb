@@ -1,7 +1,11 @@
 class StaticPagesController < ApplicationController
 
-    def home
+    def login
       render 'home'
     end
     
+    def feed
+      render 'feed'
+    end
+
 end

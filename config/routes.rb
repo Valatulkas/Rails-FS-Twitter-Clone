@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  root to: "static_pages#home"
-  get 'feed' => 'feeds#feed'
+  root to: "static_pages#login"
+  
   
   namespace :api do
     #users
@@ -19,6 +19,5 @@ Rails.application.routes.draw do
     get '/users/:username/tweets' => 'tweets#index_by_user'
     get '/tweets/search/:keyword' => 'tweets#search'
   end
-
-  get '*path' => 'static_pages#home'
+  get 'feed' => 'static_pages#feed'
 end
