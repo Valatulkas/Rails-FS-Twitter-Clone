@@ -1,7 +1,54 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { handleErrors } from '@utils/fetchHelper';
 import './home.scss';
 
+class Home extends React.Component {
+  state = {
+    authenticated: false,
+    show_login: true,
+  }
+
+  componentDidMount() {
+    fetch('/api/authenticated')
+      .then(handleErrors)
+      .then(data => {
+        this.setState({
+          authenticated: data.authenticated,
+        })
+      })
+  }
+  toggle = () => {
+    this.setState({
+      show_login: !this.state.show_login,
+    })
+  }
+  render () {
+    const { authenticated, show_login } = this.state;
+    if (authenticated) {
+      return (
+        <div className='container'>
+          <div className='row'>
+            <div className='col-12'>
+              <p>Eyo!</p>
+            </div>
+          </div>
+        </div>
+      );
+    };
+    return (
+      <div className='container'>
+          <div className='row'>
+              <div className='col-12'>
+                <p>Login</p>
+              </div>
+          </div>
+      </div>
+    )
+  }
+}
+
+/*
 const Home = () => (
   <React.Fragment>
     <nav className='navbar'>
@@ -89,6 +136,7 @@ const Home = () => (
     </div>
   </React.Fragment>
 )
+*/
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
