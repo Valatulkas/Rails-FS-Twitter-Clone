@@ -1,8 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { handleErrors } from '@utils/fetchHelper';
 import './feed.scss';
 
+class Feed extends React.Component {
+  state = {
+    tweets: [],
+  }
+  componentDidMount() {
+    fetch('/api/tweets')
+      .then(handleErrors)
+      .then(data => {
+        this.setState({
+          tweets: data.tweets,
+        })
+      })
+  }
+  render () {
+    const { tweets } = this.state;
+    return (
+      <div className='container'>
+        <div className='row'>
+          <div className='col-12'>
+            <p>explore places to stay!</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
 
+document.addEventListener('DOMContentLoaded', () => {
+  ReactDOM.render(
+    <Feed />,
+    document.body.appendChild(document.createElement('div')),
+  )
+})
+
+/*
   var currentUser;
 
   authenticate(function(response) {
@@ -301,11 +336,4 @@ const Feed = (props) => (
     </div>
   </React.Fragment>
 )
-
-document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <Feed />,
-    document.body.appendChild(document.createElement('div')),
-  )
-})
-
+*/

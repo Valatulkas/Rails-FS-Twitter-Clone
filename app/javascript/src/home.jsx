@@ -48,6 +48,13 @@ class Home extends React.Component {
   }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  ReactDOM.render(
+    <Home />,
+    document.body.appendChild(document.createElement('div')),
+  )
+})
+
 /*
 const Home = () => (
   <React.Fragment>
@@ -137,10 +144,3 @@ const Home = () => (
   </React.Fragment>
 )
 */
-
-document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <Home />,
-    document.body.appendChild(document.createElement('div')),
-  )
-})
