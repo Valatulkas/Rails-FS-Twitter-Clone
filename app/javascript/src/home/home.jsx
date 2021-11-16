@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { handleErrors } from '@utils/fetchHelper';
+import Login from './login';
+import Signup from './signup';
 import './home.scss';
 
 class Home extends React.Component {
   state = {
     authenticated: false,
-    show_login: true,
   }
 
   componentDidMount() {
@@ -18,13 +19,8 @@ class Home extends React.Component {
         })
       })
   }
-  toggle = () => {
-    this.setState({
-      show_login: !this.state.show_login,
-    })
-  }
   render () {
-    const { authenticated, show_login } = this.state;
+    const { authenticated } = this.state;
       return (
         <React.Fragment>
           <nav className='navbar'>
@@ -69,40 +65,12 @@ class Home extends React.Component {
                   <p>Connect with your friends &#8212; and other fascinating people. Get in-the-moment updates on the things that interest you. And watch events unfold, in real time, from every angle.</p>
                 </div>
                 <div className='col-md-4'>
-                  <form>
-                    <div className="form-group">
-                      <input type="text" className="form-control username" placeholder="Username" />
-                    </div>
-                    <div className="form-group col-xs-8">
-                      <input type="password" className="form-control password" placeholder="Password" />
-                    </div>
-                    <button id="log-in-btn" className="btn btn-default btn-primary">Log in</button>
-                    <label>
-                      <input type="checkbox" />
-                      <span>Remember me</span>
-                      <span> &#183; </span>
-                    </label>
-                    <a href="#">Forgot password?</a>
-                  </form>
+                  <Login />
                 </div>
                 <div className='col-0 col-md-2'></div>
                 <div className='col-md-6'></div>
                 <div className='col-md-5'>
-                  <form>
-                    <div className="new-to-t">
-                      <p><strong>New to Twitter?</strong><span> Sign Up</span></p>
-                    </div>
-                    <div className="form-group">
-                      <input type="text" className="form-control username" placeholder="Username" />
-                    </div>
-                    <div className="form-group">
-                      <input type="email" className="form-control email" placeholder="Email" />
-                    </div>
-                    <div className="form-group">
-                      <input type="password" className="form-control password" placeholder="Password" />
-                    </div>
-                    <button id="sign-up-btn" className="btn btn-default btn-warning pull-right">Sign up for Twitter</button>
-                  </form>
+                  <Signup />
                 </div>
               </div>
               <div>

@@ -102,7 +102,7 @@ class Feed extends React.Component {
                   <textarea type="text" className="form-control post-input" rows="3" placeholder="What's happening?"></textarea>
                   <div className="pull-right">
                     <span className="post-char-counter">140</span>
-                    <button className="btn btn-primary" disabled id="post-tweet-btn">Tweet</button>
+                    <button className="btn btn-primary" id="post-tweet-btn">Tweet</button>
                   </div>
                 </div>
                 <div className="feed mt-4">
