@@ -19,13 +19,108 @@ class Feed extends React.Component {
   render () {
     const { tweets } = this.state;
     return (
-      <div className='container'>
-        <div className='row'>
-          <div className='col-12'>
-            <p>explore places to stay!</p>
+      <React.Fragment>
+        <nav className='navbar'>
+          <div className='container'>
+            <div className='navbar-header'>
+              <h1>Twitter Feed Page</h1>
+              <a className="navbar-brand" href="#">
+                <i className="fa fa-twitter"></i>
+              </a>
+            </div>
+            <ul className='nav navbar-right'>
+              <li className='dropdown'>
+                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span id='user-icon'>User</span></a>
+                <ul className="dropdown-menu row" role="menu">
+                  <li ><a href="#" className="username">User</a></li>
+                  <li ><a href="#">Lists</a></li>
+                  <li ><a href="#">Help</a></li>
+                  <li ><a href="#">Keyboard shortcuts</a></li>
+                  <li ><a href="#">Settings</a></li>
+                  <li ><a id="log-out" href="#">Log out</a></li>
+                </ul>
+              </li>
+            </ul>
+            <div className='search-bar col-xs-3 nav navbar-right'>
+              <div className='input-group'>
+                <input type="text" class="form-control search-input" placeholder="Search for..." />
+                <span class="input-group-btn">
+                  <button class="btn btn-default search-btn" type="button">Go!</button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <div className='main'>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-0 col-md-2'></div>
+              <div className='col-3'>
+                <div className="profileCard-content">
+                  <div className="user-field col-xs-12">
+                    <a className="username" href="#">User</a><br/>
+                    <a className="screenName" href="#">@User</a>
+                  </div>
+                  <div className="user-stats">
+                    <div className="col-3">
+                      <a href="">
+                        <span>Tweets<br/></span>
+                        <span className="user-stats-tweets">10</span>
+                      </a>
+                    </div>
+                    <div className="col-4">
+                      <a href="">
+                        <span>Following<br/></span>
+                        <span className="user-stats-following">0</span>
+                      </a>
+                    </div>
+                    <div className="col-4">
+                      <a href="">
+                        <span>Followers<br/></span>
+                        <span className="user-stats-followers">0</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="trends col-xs-12">
+                  <div class="col-xs-12">
+                    <div class="trends-header">
+                      <span>Trends</span><span> &#183; </span><small><a href="">Change</a></small>      
+                    </div>
+                    <ul class="trends-list">
+                      <li><a href="#">#Ruby</a></li>
+                      <li><a href="#">#React</a></li>
+                      <li><a href="#">#Rails</a></li>
+                      <li><a href="#">#API</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div className='col-0 col-md-1'></div>
+              <div className='col-5'>
+                <div className="col-xs-12 post-tweet-box">
+                  <textarea type="text" className="form-control post-input" rows="3" placeholder="What's happening?"></textarea>
+                  <div className="pull-right">
+                    <span className="post-char-counter">140</span>
+                    <button className="btn btn-primary" disabled id="post-tweet-btn">Tweet</button>
+                  </div>
+                </div>
+                <div className="feed mt-4">
+                  <div className="tweet col-12">
+                    <a className="tweet-username" href="#">User</a>
+                    <a className="tweet-screenName" href="#">@User</a>
+                    <p>This is a tweet</p>
+                    <a className="delete-tweet" href="#">Delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+        <div>
+          <span className="mr-3 text-secondary"><a href="https://github.com/Valatulkas" target="_blank" rel="noopener noreferrer">JFerg</a></span>
+        </div>
+      </React.Fragment>
     )
   }
 }
@@ -36,7 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(document.createElement('div')),
   )
 })
-
 /*
   var currentUser;
 
@@ -230,110 +324,4 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   getTweetsAndPost();
-
-
-const Feed = (props) => (
-  <React.Fragment>
-    <nav className='navbar'>
-      <div className='container'>
-        <div className='navbar-header'>
-          <h1>Twitter Feed Page</h1>
-          <a className="navbar-brand" href="#">
-            <i className="fa fa-twitter"></i>
-          </a>
-        </div>
-        <ul className='nav navbar-right'>
-          <li className='dropdown'>
-            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span id='user-icon'>User</span></a>
-            <ul className="dropdown-menu row" role="menu">
-              <li ><a href="#" className="username">User</a></li>
-              <li ><a href="#">Lists</a></li>
-              <li ><a href="#">Help</a></li>
-              <li ><a href="#">Keyboard shortcuts</a></li>
-              <li ><a href="#">Settings</a></li>
-              <li ><a id="log-out" href="#">Log out</a></li>
-            </ul>
-          </li>
-        </ul>
-        <div className='search-bar col-xs-3 nav navbar-right'>
-          <div className='input-group'>
-            <input type="text" class="form-control search-input" placeholder="Search for..." />
-            <span class="input-group-btn">
-              <button class="btn btn-default search-btn" type="button">Go!</button>
-            </span>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <div className='main'>
-      <div className='container'>
-        <div className='row'>
-          <div className='col-0 col-md-2'></div>
-          <div className='col-3'>
-            <div className="profileCard-content">
-              <div className="user-field col-xs-12">
-                <a className="username" href="#">User</a><br/>
-                <a className="screenName" href="#">@User</a>
-              </div>
-              <div className="user-stats">
-                <div className="col-3">
-                  <a href="">
-                    <span>Tweets<br/></span>
-                    <span className="user-stats-tweets">10</span>
-                  </a>
-                </div>
-                <div className="col-4">
-                  <a href="">
-                    <span>Following<br/></span>
-                    <span className="user-stats-following">0</span>
-                  </a>
-                </div>
-                <div className="col-4">
-                  <a href="">
-                    <span>Followers<br/></span>
-                    <span className="user-stats-followers">0</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="trends col-xs-12">
-              <div class="col-xs-12">
-                <div class="trends-header">
-                  <span>Trends</span><span> &#183; </span><small><a href="">Change</a></small>      
-                </div>
-                <ul class="trends-list">
-                  <li><a href="#">#Ruby</a></li>
-                  <li><a href="#">#React</a></li>
-                  <li><a href="#">#Rails</a></li>
-                  <li><a href="#">#API</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className='col-0 col-md-1'></div>
-          <div className='col-5'>
-            <div className="col-xs-12 post-tweet-box">
-              <textarea type="text" className="form-control post-input" rows="3" placeholder="What's happening?"></textarea>
-              <div className="pull-right">
-                <span className="post-char-counter">140</span>
-                <button className="btn btn-primary" disabled id="post-tweet-btn">Tweet</button>
-              </div>
-            </div>
-            <div className="feed mt-4">
-              <div className="tweet col-12">
-                <a className="tweet-username" href="#">User</a>
-                <a className="tweet-screenName" href="#">@User</a>
-                <p>This is a tweet</p>
-                <a className="delete-tweet" href="#">Delete</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <span className="mr-3 text-secondary"><a href="https://github.com/Valatulkas" target="_blank" rel="noopener noreferrer">JFerg</a></span>
-    </div>
-  </React.Fragment>
-)
 */
