@@ -1,7 +1,7 @@
 class FeedsController < ApplicationController
 
     def feed
-        render 'feed'
+      render 'feed'
     end
     
 end
