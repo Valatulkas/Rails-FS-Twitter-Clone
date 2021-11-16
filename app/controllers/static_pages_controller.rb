@@ -4,4 +4,8 @@ class StaticPagesController < ApplicationController
       render 'home'
     end
     
+    def feed
+      render 'feed'
+  end
+  
 end
