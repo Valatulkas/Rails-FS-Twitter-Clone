@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import ReactDOM from 'react-dom';
-import { handleErrors } from '@utils/fetchHelper';
+import { handleErrors, safeCredentials } from '@utils/fetchHelper';
 import './feed.scss';
 
 class Feed extends React.Component {
   state = {
-    tweets: {},
+    username: '',
+    message: '',
   }
   componentDidMount() {
     fetch('/api/tweets')
@@ -17,12 +18,36 @@ class Feed extends React.Component {
         })
       })
   }
+  postTweet = (e) => {
+    if (e) { e.preventDefault(); }
+    this.setState({
+      error: '',
+    });
+    fetch('/api/tweets#create', safeCredentials({
+      method: "POST",
+      body: JSON.stringify({
+        tweets: {
+          username: this.state.username,
+          message: this.state.message,
+        }
+      })
+    }))
+      .then(handleErrors)
+      .then(data => {
+        if(data.success) {
+          const params = new URLSearchParams(window.location.search);
+          const redirect_url = params.get('redirect_url') || '/feed';
+          window.location = redirect_url;
+        }
+      })
+      .catch(error => {
+        this.setState({
+          error: 'Could not post tweet..'
+        })
+      })
+  }
   render () {
-    const { tweets } = this.state;
-    const {
-      userName,
-      message,
-    } = tweets
+    const { username, message } = this.state;
     return (
       <React.Fragment>
         <nav className='navbar'>
@@ -118,11 +143,13 @@ class Feed extends React.Component {
                 </div>
               </div>
               <div className="col-md-5 post-tweet-box">
-                    <textarea type="text" className="form-control post-input" rows="3" placeholder="What's happening?"></textarea>
-                    <div className="pull-right">
-                      <span className="post-char-counter">140</span>
-                      <button className="btn btn-primary" id="post-tweet-btn">Tweet</button>
-                    </div>
+                    <form onSubmit={this.postTweet}>
+                      <textarea type="text" className="form-control post-input" rows="3" placeholder="What's happening?"></textarea>
+                      <div className="pull-right">
+                        <span className="post-char-counter">140</span>
+                        <button type='submit' className="btn btn-primary" id="post-tweet-btn">Tweet</button>
+                      </div>
+                    </form>
                     <div className="feed mt-4">
                       <div className="tweet">
                         <a className="tweet-username" href="#">User</a>
@@ -131,7 +158,7 @@ class Feed extends React.Component {
                         <a className="delete-tweet" href="#">Delete</a>
                       </div>
                       <div> {message}</div>
-                      <p> hosted by {userName} </p>
+                      <p> hosted by {username} </p>
                     </div>
               </div>
             </div>
