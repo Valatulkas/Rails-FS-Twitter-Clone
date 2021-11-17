@@ -49,7 +49,7 @@ class Login extends React.Component {
                     <input name='username' type='text' className='form-control form-control-lg mb-3' placeholder='Username' value={username} onChange={this.handleChange} required />
                     <input name='password' type='text' className='form-control form-control-lg mb-3' placeholder='Password' value={password} onChange={this.handleChange} required />
                     <button type='submit' className='btn btn-info btn-block btn-lg'>Log In</button>
-                    {error && <p className='text-danger mt-2'>{error}</p>}
+                    {error && <p className='text-danger mt-2'>{errors}</p>}
                     <label>
                       <input type="checkbox" />
                       <span>Remember me</span>
@@ -61,5 +61,4 @@ class Login extends React.Component {
         )
     }
 }
-                
 export default Login

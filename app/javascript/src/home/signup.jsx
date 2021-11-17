@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import ReactDOM from 'react-dom';
+import Login from './login';
 import { safeCredentials, handleErrors } from '@utils/fetchHelper';
 
 class Signup extends React.Component {
@@ -74,7 +75,13 @@ class Signup extends React.Component {
         return (
             <React.Fragment>
                 <form onSubmit={this.signup}>
-                    <input name='username' type='text' />
+                    <p><strong>New to Twitter?</strong><span> Sign Up</span></p>
+                    <input name='username' type='text' className='form-control form-control-lg mb-3' placeholder='Username' vlaue={username} onChange={this.handleChange} required />
+                    <input name='email' type='text' className='form-control form-control-lg mb-3' placeholder='Email' value={email} onChange={this.handleChange} required />
+                    <input name='password' type='text' className='form-control form-control-lg mb-3' placeholder='Password' value={password} onChange={this.handleChange} required />
+                    <button type='submit' className='btn btn-info btn-block btn-lg'>Sign up for Twitter!</button> 
+                    <hr/>
+                    <p className="mb-0">Already have an account? <a className="text-primary pull-right" onClick={Login}>Log in</a></p>
                 </form>
             </React.Fragment>
         )
@@ -82,20 +89,3 @@ class Signup extends React.Component {
 }
 
 export default Signup
-
-
-<form>
-                    <div className="new-to-t">
-                      <p><strong>New to Twitter?</strong><span> Sign Up</span></p>
-                    </div>
-                    <div className="form-group">
-                      <input type="text" className="form-control username" placeholder="Username" />
-                    </div>
-                    <div className="form-group">
-                      <input type="email" className="form-control email" placeholder="Email" />
-                    </div>
-                    <div className="form-group">
-                      <input type="password" className="form-control password" placeholder="Password" />
-                    </div>
-                    <button id="sign-up-btn" className="btn btn-default btn-warning pull-right">Sign up for Twitter</button>
-</form>
