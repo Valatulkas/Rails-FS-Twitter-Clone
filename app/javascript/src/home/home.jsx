@@ -60,16 +60,17 @@ class Home extends React.Component {
             <div className='container'>
               <div className='row'>
                 <div className='col-0 col-md-1'></div>
-                <div className='col-md-5' id="welcome-text">
+                <div className='col-md-4' id="welcome-text">
                   <h1><strong>Welcome to Twitter.</strong></h1>
                   <p>Connect with your friends &#8212; and other fascinating people. Get in-the-moment updates on the things that interest you. And watch events unfold, in real time, from every angle.</p>
                 </div>
-                <div className='col-md-4'>
+                <div className='col-0 col-md-1'></div>
+                <div className='col-md-3'>
                   <Login />
                 </div>
                 <div className='col-0 col-md-2'></div>
                 <div className='col-md-6'></div>
-                <div className='col-md-5'>
+                <div className='col-md-3 mt-5  col-xs-offset-1'>
                   <Signup />
                 </div>
               </div>

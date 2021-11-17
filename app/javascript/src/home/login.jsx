@@ -31,7 +31,7 @@ class Login extends React.Component {
             .then(data => {
                 if(data.success) {
                     const params = new URLSearchParams(window.location.search);
-                    const redirect_url = params.get('redirect_url') || '/';
+                    const redirect_url = params.get('redirect_url') || '/feed';
                     window.location = redirect_url;
                 }
             })
@@ -46,15 +46,11 @@ class Login extends React.Component {
         return (
             <React.Fragment>
                 <form onSubmit={this.login}>
-                    <input name='username' type='text' className='form-control form-control-lg mb-3' placeholder='Username' value={username} onChange={this.handleChange} required />
-                    <input name='password' type='text' className='form-control form-control-lg mb-3' placeholder='Password' value={password} onChange={this.handleChange} required />
-                    <button type='submit' className='btn btn-info btn-block btn-lg'>Log In</button>
+                    <p><strong>Already on Twitter?</strong><span> Sign In</span></p>
+                    <input name='username' type='text' className='form-control mb-3' placeholder='Username' value={username} onChange={this.handleChange} required />
+                    <input name='password' type='text' className='form-control mb-3' placeholder='Password' value={password} onChange={this.handleChange} required />
+                    <button type='submit' className='btn btn-info btn-block pl-3'>Log In</button>
                     {error && <p className='text-danger mt-2'>{errors}</p>}
-                    <label>
-                      <input type="checkbox" />
-                      <span>Remember me</span>
-                      <span> &#183; </span>
-                    </label>
                     <a href="#">Forgot password?</a>
                 </form>
             </React.Fragment>

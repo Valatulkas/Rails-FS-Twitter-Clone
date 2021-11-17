@@ -5,7 +5,7 @@ import './feed.scss';
 
 class Feed extends React.Component {
   state = {
-    tweets: [],
+    tweets: {},
   }
   componentDidMount() {
     fetch('/api/tweets')
@@ -13,15 +13,19 @@ class Feed extends React.Component {
       .then(data => {
         this.setState({
           tweets: data.tweets,
+          loading: true,
         })
       })
   }
   render () {
     const { tweets } = this.state;
+    const {
+      userName,
+      message,
+    } = tweets
     return (
       <React.Fragment>
         <nav className='navbar'>
-          <div className='container'>
             <div className='navbar-header'>
               <h1>Twitter Feed Page</h1>
               <a className="navbar-brand" href="#">
@@ -49,25 +53,42 @@ class Feed extends React.Component {
                 </span>
               </div>
             </div>
-          </div>
         </nav>
         <div className='main'>
           <div className='container'>
             <div className='row'>
-              <div className='col-0 col-md-2'></div>
-              <div className='col-3'>
-                <div className="profileCard-content">
-                  <div className="user-field col-xs-12">
-                    <a className="username" href="#">User</a><br/>
-                    <a className="screenName" href="#">@User</a>
-                  </div>
-                  <div className="user-stats">
-                    <div className="col-3">
+              <div className='col-xs-0 col-md-2'></div>
+              <div className='col-md-3'>
+                <div className='col-xs-3 profileCard-content'>
+                  <div className='col-xs-12 user-field'>
+                      <a className="username" href="#">User</a><br/>
+                      <a className="screenName mt-3" href="#"><small>@User</small></a>
+                  </div>  
+                  <div className='user-stats'>
+                    <div className='col-xs-4'>
                       <a href="">
                         <span>Tweets<br/></span>
                         <span className="user-stats-tweets">10</span>
                       </a>
                     </div>
+                  <div className='col-xs-4'>
+                      <a href="">
+                        <span>Following<br/></span>
+                        <span className="user-stats-following">0</span>
+                      </a>
+                  </div>
+                  <div className="col-xs-4">
+                      <a href="">
+                        <span>Followers<br/></span>
+                        <span className="user-stats-followers">0</span>
+                      </a>
+                  </div>
+                </div>
+                </div>
+                <div className="profileCard-content">
+                  
+                  <div className="user-stats">
+                    
                     <div className="col-4">
                       <a href="">
                         <span>Following<br/></span>
@@ -96,27 +117,27 @@ class Feed extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className='col-0 col-md-1'></div>
-              <div className='col-5'>
-                <div className="col-xs-12 post-tweet-box">
-                  <textarea type="text" className="form-control post-input" rows="3" placeholder="What's happening?"></textarea>
-                  <div className="pull-right">
-                    <span className="post-char-counter">140</span>
-                    <button className="btn btn-primary" id="post-tweet-btn">Tweet</button>
-                  </div>
-                </div>
-                <div className="feed mt-4">
-                  <div className="tweet col-12">
-                    <a className="tweet-username" href="#">User</a>
-                    <a className="tweet-screenName" href="#">@User</a>
-                    <p>This is a tweet</p>
-                    <a className="delete-tweet" href="#">Delete</a>
-                  </div>
-                </div>
+              <div className="col-md-5 post-tweet-box">
+                    <textarea type="text" className="form-control post-input" rows="3" placeholder="What's happening?"></textarea>
+                    <div className="pull-right">
+                      <span className="post-char-counter">140</span>
+                      <button className="btn btn-primary" id="post-tweet-btn">Tweet</button>
+                    </div>
+                    <div className="feed mt-4">
+                      <div className="tweet">
+                        <a className="tweet-username" href="#">User</a>
+                        <a className="tweet-screenName" href="#">@User</a>
+                        <p>This is a tweet</p>
+                        <a className="delete-tweet" href="#">Delete</a>
+                      </div>
+                      <div> {message}</div>
+                      <p> hosted by {userName} </p>
+                    </div>
               </div>
             </div>
           </div>
         </div>
+
         <div>
           <span className="mr-3 text-secondary"><a href="https://github.com/Valatulkas" target="_blank" rel="noopener noreferrer">JFerg</a></span>
         </div>
@@ -132,8 +153,6 @@ document.addEventListener('DOMContentLoaded', () => {
   )
 })
 /*
-  var currentUser;
-
   authenticate(function(response) {
     console.log(response);
     if(response.authenticated) {

@@ -60,7 +60,7 @@ class Signup extends React.Component {
             .then(data => {
                 if(data.success) {
                     const params = new URLSearchParams(window.location.search);
-                    const redirect_url = params.get('redirect_url') || '/';
+                    const redirect_url = params.get('redirect_url') || 'feed';
                     window.location = redirect_url;
                 }
             })
@@ -76,12 +76,10 @@ class Signup extends React.Component {
             <React.Fragment>
                 <form onSubmit={this.signup}>
                     <p><strong>New to Twitter?</strong><span> Sign Up</span></p>
-                    <input name='username' type='text' className='form-control form-control-lg mb-3' placeholder='Username' vlaue={username} onChange={this.handleChange} required />
-                    <input name='email' type='text' className='form-control form-control-lg mb-3' placeholder='Email' value={email} onChange={this.handleChange} required />
-                    <input name='password' type='text' className='form-control form-control-lg mb-3' placeholder='Password' value={password} onChange={this.handleChange} required />
-                    <button type='submit' className='btn btn-info btn-block btn-lg'>Sign up for Twitter!</button> 
-                    <hr/>
-                    <p className="mb-0">Already have an account? <a className="text-primary pull-right" onClick={Login}>Log in</a></p>
+                    <input name='username' type='text' className='form-control mb-3' placeholder='Username' vlaue={username} onChange={this.handleChange} required />
+                    <input name='email' type='text' className='form-control mb-3' placeholder='Email' value={email} onChange={this.handleChange} required />
+                    <input name='password' type='text' className='form-control mb-3' placeholder='Password' value={password} onChange={this.handleChange} required />
+                    <button type='submit' className='btn btn-info btn-block'>Sign up for Twitter!</button> 
                 </form>
             </React.Fragment>
         )
