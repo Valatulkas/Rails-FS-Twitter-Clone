@@ -5,40 +5,31 @@ import './feed.scss';
 
 class Feed extends React.Component {
   state = {
-    username: '',
-    message: '',
+    tweets: [],
   }
   componentDidMount() {
-    fetch('/api/tweets')
+    fetch('http://localhost:3000/tweets')
       .then(handleErrors)
       .then(data => {
         this.setState({
           tweets: data.tweets,
-          loading: true,
         })
       })
   }
 
   // Index Tweets
-  indexTweets = (e) => {
-    if (e) { e.preventDefault(); }
+  indexTweets = () => {
     this.setState({
       error: '',
     });
     fetch('http://localhost:3000/tweets', safeCredentials({
       method: 'GET',
-      body: JSON.stringify({
-        tweets: {
-          username: this.state.username,
-          message: this.state.message,
-        }
-      })
     }))
       .then(handleErrors)
       .then(data => {
-        if (data.success) {
-          indexTweets();
-        }
+        this.setState({
+          tweets: this.state.tweets.concat(data.tweets),
+        })
       })
       .catch(error => {
         this.setState({
@@ -57,17 +48,16 @@ class Feed extends React.Component {
       method: "POST",
       body: JSON.stringify({
         tweets: {
-          username: this.state.username,
-          message: this.state.message,
+          username: this.state.tweets.username,
+          id: this.state.tweets.id,
+          message: this.state.tweets.message,
         }
       })
     }))
       .then(handleErrors)
       .then(data => {
         if(data.success) {
-          const params = new URLSearchParams(window.location.search);
-          const redirect_url = params.get('redirect_url') || '/feed';
-          window.location = redirect_url;
+          indexTweets();
         }
       })
       .catch(error => {
@@ -99,7 +89,7 @@ class Feed extends React.Component {
   }
 
   render () {
-    const { username, message } = this.state;
+    const { tweets } = this.state;
     return (
       <React.Fragment>
         <nav className='navbar'>
@@ -203,14 +193,21 @@ class Feed extends React.Component {
                       </div>
                     </form>
                     <div className="feed mt-4">
+
                       <div className="tweet">
                         <a id="tweet-username" href="#">User</a>
                         <a className="tweet-screenName" href="#">@User</a>
                         <p>This is a tweet</p>
                         <a className="delete-tweet" href="#">Delete</a>
                       </div>
-                      <div>{message}</div>
-                      <p> hosted by {username} </p>
+
+                      <div key={tweets.id} className='mt-3 tweet'>
+                        <a href={`/tweets/${tweets.usename}`}>{tweets.username}</a>
+                        <a href={`/tweets/${tweets.id}`}>@{tweets.id}</a>
+                        <p>{tweets.message}</p>
+                        <button onClick={this.deleteTweet} className='btn btn-danger'>Delete</button>
+                      </div>
+
                     </div>
               </div>
             </div>
