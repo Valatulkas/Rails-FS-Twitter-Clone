@@ -115,6 +115,23 @@ class Feed extends React.Component {
         }
       })
   } 
+
+  // Search Tweets by Keyword
+  getTweetByKeyword = (keyword) => {
+    this.setState({
+      error: 'Cannot retrieve tweets by keyword...'
+    });
+    fetch('http://localhost:3000/tweets/search/' + keyword, safeCredentials({
+      method: 'GET',
+    }))
+      .then(handleErrors)
+      .then(data => {
+        if (data.success) {
+          this.indexTweets();
+        }
+      })
+  }
+
   // Delete Tweets
   deleteTweet = (id) => {
     this.setState({
