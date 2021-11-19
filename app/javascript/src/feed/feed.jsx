@@ -17,25 +17,21 @@ class Feed extends React.Component {
       })
   }
 
-  // Index Tweets
-  indexTweets = () => {
+  // Log out
+  logout = (e) => {
+    if (e) { e.preventDefault(); } 
     this.setState({
-      error: '',
+        error: 'Could not sign out...',
     });
-    fetch('http://localhost:3000/tweets', safeCredentials({
-      method: 'GET',
+    fetch('/api/sessions', safeCredentials({
+        method: 'DELETE',
     }))
-      .then(handleErrors)
-      .then(data => {
-        this.setState({
-          tweets: this.state.tweets.concat(data.tweets),
+        .then(handleErrors)
+        .then(data => {
+            if(data.success) {
+                window.location.replace('/home');
+            }
         })
-      })
-      .catch(error => {
-        this.setState({
-          error: 'Could not post tweets..'
-        })
-      })
   }
 
   // Post Tweets
@@ -67,6 +63,58 @@ class Feed extends React.Component {
       })
   }
 
+  // Index Tweets
+  indexTweets = () => {
+    this.setState({
+      error: '',
+    });
+    fetch('http://localhost:3000/tweets', safeCredentials({
+      method: 'GET',
+    }))
+      .then(handleErrors)
+      .then(data => {
+        this.setState({
+          tweets: this.state.tweets.concat(data.tweets),
+        })
+      })
+      .catch(error => {
+        this.setState({
+          error: 'Could not post tweets..'
+        })
+      })
+  }
+  
+  // Index Tweets by ID
+  getTweetById = (id) => {
+    this.setState({
+      error: 'Cannot retrieve tweet by ID...'
+    });
+    fetch('http://localhost:3000/tweets/' + id, safeCredentials({
+      method: 'GET',
+    }))
+      .then(handleErrors)
+      .then(data => {
+        if (data.success) {
+          this.indexTweets();
+        }
+      })
+  }
+
+  // Index Tweets by User 
+  getTweetsByUser = (userName) => {
+    this.setState({
+      error: 'Cannot retrieve tweets by User...'
+    });
+    fetch('http://localhost:3000/users/' + userName + '/tweets', safeCredentials({
+      method: 'GET',
+    }))
+      .then(handleErrors)
+      .then(data => {
+        if (data.success) {
+          this.indexTweets();
+        }
+      })
+  } 
   // Delete Tweets
   deleteTweet = (id) => {
     this.setState({
@@ -108,7 +156,7 @@ class Feed extends React.Component {
                   <li ><a href="#">Help</a></li>
                   <li ><a href="#">Keyboard shortcuts</a></li>
                   <li ><a href="#">Settings</a></li>
-                  <li ><a id="log-out" href="#">Log out</a></li>
+                  <li ><button onClick={this.logout}>Log Out</button></li>
                 </ul>
               </li>
             </ul>

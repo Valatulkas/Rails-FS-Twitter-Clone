@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { safeCredentials, handleErros } from '@utils/fetchHelper';
+import { safeCredentials, handleErrors } from '@utils/fetchHelper';
                 
 class Login extends React.Component {
     state = {
@@ -13,10 +13,12 @@ class Login extends React.Component {
             [e.target.name]: e.target.value,
         })
     }
+
+    // Log In
     login = (e) => {
         if (e) { e.preventDefault(); }
         this.setState({
-            error: '',
+            error: 'Could not sign in...',
         });
         fetch('/api/sessions', safeCredentials({
             method: 'POST',
@@ -27,20 +29,14 @@ class Login extends React.Component {
                 }
             })
         }))
-            .then(handleErros)
+            .then(handleErrors)
             .then(data => {
                 if(data.success) {
-                    const params = new URLSearchParams(window.location.search);
-                    const redirect_url = params.get('redirect_url') || '/feed';
-                    window.location = redirect_url;
+                    window.location.replace('/feed');
                 }
             })
-            .catch(error => {
-                this.setState({
-                    error: 'Could not log in.',
-                })
-            })
     }
+
     render () {
         const { username, password, error } = this.state;
         return (
