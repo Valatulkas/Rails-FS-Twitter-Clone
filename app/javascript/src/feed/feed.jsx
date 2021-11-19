@@ -18,12 +18,42 @@ class Feed extends React.Component {
         })
       })
   }
+
+  // Index Tweets
+  indexTweets = (e) => {
+    if (e) { e.preventDefault(); }
+    this.setState({
+      error: '',
+    });
+    fetch('http://localhost:3000/tweets', safeCredentials({
+      method: 'GET',
+      body: JSON.stringify({
+        tweets: {
+          username: this.state.username,
+          message: this.state.message,
+        }
+      })
+    }))
+      .then(handleErrors)
+      .then(data => {
+        if (data.success) {
+          indexTweets();
+        }
+      })
+      .catch(error => {
+        this.setState({
+          error: 'Could not post tweets..'
+        })
+      })
+  }
+
+  // Post Tweets
   postTweet = (e) => {
     if (e) { e.preventDefault(); }
     this.setState({
       error: '',
     });
-    fetch('/api/tweets#create', safeCredentials({
+    fetch('http://localhost:3000/tweets', safeCredentials({
       method: "POST",
       body: JSON.stringify({
         tweets: {
@@ -46,6 +76,28 @@ class Feed extends React.Component {
         })
       })
   }
+
+  // Delete Tweets
+  deleteTweet = (id) => {
+    this.setState({
+      error: '',
+    });
+    fetch('http://localhost:3000/tweets/' + id, safeCredentials({
+      method: 'DELETE',
+    }))
+      .then(handleErrors)
+      .then(data => {
+        if(data.success) {
+          indexTweets();
+        }
+      })
+      .catch(error => {
+        this.setState({
+          error: 'Could not post tweets...'
+        })
+      })
+  }
+
   render () {
     const { username, message } = this.state;
     return (
@@ -152,12 +204,12 @@ class Feed extends React.Component {
                     </form>
                     <div className="feed mt-4">
                       <div className="tweet">
-                        <a className="tweet-username" href="#">User</a>
+                        <a id="tweet-username" href="#">User</a>
                         <a className="tweet-screenName" href="#">@User</a>
                         <p>This is a tweet</p>
                         <a className="delete-tweet" href="#">Delete</a>
                       </div>
-                      <div> {message}</div>
+                      <div>{message}</div>
                       <p> hosted by {username} </p>
                     </div>
               </div>
