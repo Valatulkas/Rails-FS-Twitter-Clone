@@ -6,6 +6,6 @@ class StaticPagesController < ApplicationController
     
     def feed
       render 'feed'
-  end
+    end
   
 end

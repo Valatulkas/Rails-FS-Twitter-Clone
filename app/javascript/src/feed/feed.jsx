@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { handleErrors, safeCredentials } from '@utils/fetchHelper';
 import './feed.scss';
@@ -40,7 +40,7 @@ class Feed extends React.Component {
     this.setState({
       error: '',
     });
-    fetch('http://localhost:3000/tweets', safeCredentials({
+    fetch('/tweets', safeCredentials({
       method: "POST",
       body: JSON.stringify({
         tweets: {
@@ -68,7 +68,7 @@ class Feed extends React.Component {
     this.setState({
       error: '',
     });
-    fetch('http://localhost:3000/tweets', safeCredentials({
+    fetch('/tweets', safeCredentials({
       method: 'GET',
     }))
       .then(handleErrors)
