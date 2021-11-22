@@ -8,7 +8,7 @@ class Feed extends React.Component {
     tweets: [],
   }
   componentDidMount() {
-    fetch('http://localhost:3000/tweets')
+    fetch('/api/tweets')
       .then(handleErrors)
       .then(data => {
         this.setState({
@@ -40,7 +40,7 @@ class Feed extends React.Component {
     this.setState({
       error: '',
     });
-    fetch('/tweets', safeCredentials({
+    fetch('/api/tweets', safeCredentials({
       method: "POST",
       body: JSON.stringify({
         tweets: {
@@ -68,7 +68,7 @@ class Feed extends React.Component {
     this.setState({
       error: '',
     });
-    fetch('/tweets', safeCredentials({
+    fetch('/api/tweets', safeCredentials({
       method: 'GET',
     }))
       .then(handleErrors)
@@ -89,7 +89,7 @@ class Feed extends React.Component {
     this.setState({
       error: 'Cannot retrieve tweet by ID...'
     });
-    fetch('http://localhost:3000/tweets/' + id, safeCredentials({
+    fetch('/api/tweets/' + id, safeCredentials({
       method: 'GET',
     }))
       .then(handleErrors)
@@ -105,7 +105,7 @@ class Feed extends React.Component {
     this.setState({
       error: 'Cannot retrieve tweets by User...'
     });
-    fetch('http://localhost:3000/users/' + userName + '/tweets', safeCredentials({
+    fetch('/api/users/' + userName + '/tweets', safeCredentials({
       method: 'GET',
     }))
       .then(handleErrors)
@@ -121,7 +121,7 @@ class Feed extends React.Component {
     this.setState({
       error: 'Cannot retrieve tweets by keyword...'
     });
-    fetch('http://localhost:3000/tweets/search/' + keyword, safeCredentials({
+    fetch('/api/tweets/search/' + keyword, safeCredentials({
       method: 'GET',
     }))
       .then(handleErrors)
@@ -137,7 +137,7 @@ class Feed extends React.Component {
     this.setState({
       error: '',
     });
-    fetch('http://localhost:3000/tweets/' + id, safeCredentials({
+    fetch('/api/tweets/' + id, safeCredentials({
       method: 'DELETE',
     }))
       .then(handleErrors)
