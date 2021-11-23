@@ -232,20 +232,17 @@ class Feed extends React.Component {
                         <p>This is a tweet</p>
                         <a className="delete-tweet" href="#">Delete</a>
                       </div>
-                      
-                      <div className='tweet-feed'>
-                        {tweets.map(tweet => {
+
+                      {tweets.map(tweet => {
                           return (
                             <div key={tweet.id} className='mt-3'>
-                              <a href={`/tweets/${tweet.username}`}>{tweet.usename}</a>
+                              <a href={`/tweets/${tweet.usename}`}>{tweet.username}</a>
                               <a href={`/tweets/${tweet.id}`}>@{tweet.id}</a>
                               <p>{tweet.message}</p>
-                              <button onClick={() => this.deleteTweet(tweet.id);} className='btn btn-danger'>Delete</button>
+                              <button onClick={() => this.deleteTweet(tweet.id)} className='btn btn-danger'>Delete</button>
                             </div>
                           );
                         })}
-                      </div>
-
                     </div>
               </div>
 
