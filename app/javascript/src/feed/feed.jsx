@@ -51,11 +51,6 @@ class Feed extends React.Component {
       })
     }))
       .then(handleErrors)
-      .then(data => {
-        if(data.success) {
-          indexTweets();
-        }
-      })
       .catch(error => {
         this.setState({
           error: 'Could not post tweet..'
@@ -93,11 +88,6 @@ class Feed extends React.Component {
       method: 'GET',
     }))
       .then(handleErrors)
-      .then(data => {
-        if (data.success) {
-          this.indexTweets();
-        }
-      })
   }
 
   // Index Tweets by User 
@@ -109,11 +99,6 @@ class Feed extends React.Component {
       method: 'GET',
     }))
       .then(handleErrors)
-      .then(data => {
-        if (data.success) {
-          this.indexTweets();
-        }
-      })
   } 
 
   // Search Tweets by Keyword
@@ -125,11 +110,6 @@ class Feed extends React.Component {
       method: 'GET',
     }))
       .then(handleErrors)
-      .then(data => {
-        if (data.success) {
-          this.indexTweets();
-        }
-      })
   }
 
   // Delete Tweets
@@ -189,52 +169,36 @@ class Feed extends React.Component {
         <div className='main'>
           <div className='container'>
             <div className='row'>
-              <div className='col-xs-0 col-md-2'></div>
-              <div className='col-md-3'>
-                <div className='col-xs-3 profileCard-content'>
-                  <div className='col-xs-12 user-field'>
-                      <a className="username" href="#">User</a><br/>
-                      <a className="screenName mt-3" href="#"><small>@User</small></a>
-                  </div>  
-                  <div className='user-stats'>
-                    <div className='col-xs-4'>
-                      <a href="">
-                        <span>Tweets<br/></span>
-                        <span className="user-stats-tweets">10</span>
-                      </a>
-                    </div>
-                  <div className='col-xs-4'>
-                      <a href="">
-                        <span>Following<br/></span>
-                        <span className="user-stats-following">0</span>
-                      </a>
-                  </div>
-                  <div className="col-xs-4">
-                      <a href="">
-                        <span>Followers<br/></span>
-                        <span className="user-stats-followers">0</span>
-                      </a>
-                  </div>
-                </div>
-                </div>
-                <div className="profileCard-content">
-                  
-                  <div className="user-stats">
-                    
-                    <div className="col-4">
-                      <a href="">
-                        <span>Following<br/></span>
-                        <span className="user-stats-following">0</span>
-                      </a>
-                    </div>
-                    <div className="col-4">
-                      <a href="">
-                        <span>Followers<br/></span>
-                        <span className="user-stats-followers">0</span>
-                      </a>
+              <div className='col-xs-3 profile'>
+                <div className='profileCard col-xs-12'>
+                  <div className='profileContent'>
+                    <div className='user-field col-xs-12'>
+                        <a className="username" href="#">User</a><br/>
+                        <a className="screenName mt-3" href="#"><small>@User</small></a>
+                    </div>  
+                    <div className='user-stats'>
+                      <div className='col-xs-4'>
+                        <a href="">
+                          <span>Tweets<br/></span>
+                          <span className="user-stats-tweets">10</span>
+                        </a>
+                      </div>
+                      <div className='col-xs-4'>
+                          <a href="">
+                            <span>Following<br/></span>
+                            <span className="user-stats-following">0</span>
+                          </a>
+                      </div>
+                      <div className="col-xs-4">
+                          <a href="">
+                            <span>Followers<br/></span>
+                            <span className="user-stats-followers">0</span>
+                          </a>
+                      </div>
                     </div>
                   </div>
                 </div>
+
                 <div className="trends col-xs-12">
                   <div className="col-xs-12">
                     <div className="trends-header">
@@ -249,6 +213,9 @@ class Feed extends React.Component {
                   </div>
                 </div>
               </div>
+
+
+
               <div className="col-md-5 post-tweet-box">
                     <form onSubmit={this.postTweet}>
                       <textarea type="text" className="form-control post-input" rows="3" placeholder="What's happening?"></textarea>
@@ -265,16 +232,23 @@ class Feed extends React.Component {
                         <p>This is a tweet</p>
                         <a className="delete-tweet" href="#">Delete</a>
                       </div>
-
-                      <div key={tweets.id} className='mt-3 tweet'>
-                        <a href={`/tweets/${tweets.usename}`}>{tweets.username}</a>
-                        <a href={`/tweets/${tweets.id}`}>@{tweets.id}</a>
-                        <p>{tweets.message}</p>
-                        <button onClick={this.deleteTweet} className='btn btn-danger'>Delete</button>
+                      
+                      <div className='tweet-feed'>
+                        {tweets.map(tweet => {
+                          return (
+                            <div key={tweet.id} className='mt-3'>
+                              <a href={`/tweets/${tweet.username}`}>{tweet.usename}</a>
+                              <a href={`/tweets/${tweet.id}`}>@{tweet.id}</a>
+                              <p>{tweet.message}</p>
+                              <button onClick={() => this.deleteTweet(tweet.id);} className='btn btn-danger'>Delete</button>
+                            </div>
+                          );
+                        })}
                       </div>
 
                     </div>
               </div>
+
             </div>
           </div>
         </div>
