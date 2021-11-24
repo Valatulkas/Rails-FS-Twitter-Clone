@@ -81,7 +81,7 @@ class Signup extends React.Component {
                     <input name='username' type='text' className='form-control mb-3' placeholder='Username' vlaue={username} onChange={this.handleChange} required />
                     <input name='email' type='text' className='form-control mb-3' placeholder='Email' value={email} onChange={this.handleChange} required />
                     <input name='password' type='text' className='form-control mb-3' placeholder='Password' value={password} onChange={this.handleChange} required />
-                    <button type='submit' className='btn btn-info btn-block'>Sign up for Twitter!</button> 
+                    <button type='submit' className='btn btn-warning btn-block'>Sign up for Twitter!</button> 
                 </form>
             </React.Fragment>
         )
