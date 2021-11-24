@@ -89,7 +89,7 @@ class Home extends React.Component {
               </div>
             </div>
           </div>
-          <footer>
+          <footer className='text-center'>
             <span className="mr-3 text-secondary"><a href="https://github.com/Valatulkas" target="_blank" rel="noopener noreferrer">JFerg</a></span>
           </footer>
         </React.Fragment>

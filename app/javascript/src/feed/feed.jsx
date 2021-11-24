@@ -158,7 +158,7 @@ class Feed extends React.Component {
               <div className='input-group'>
                 <input type="text" className="form-control search-input" placeholder="Search for..." />
                 <span className="input-group-btn">
-                  <button className="btn btn-basic" type="button">Go!</button>
+                  <button onClick={() => this.getTweetByKeyword(keyword)} className="btn btn-basic">Go!</button>
                 </span>
               </div>
             </div>
@@ -185,12 +185,12 @@ class Feed extends React.Component {
                 <div className='profileCard col-xs-12'>
                   <div className='profileContent'>
                     <div className='user-field col-xs-12'>
-                      <a className="username" href="#">User</a><br/>
-                      <a className="screenName mt-3" href="#"><small>@User</small></a>
+                      <button className="username" onClick={() => this.getTweetsByUser(tweets.userName)} >User</button><br/>
+                      <a className="screenName mt-3" href='#'><small>@User</small></a>
                     </div>
                     <div className='user-stats'>
                       <div className='col-xs-4'>
-                        <a href="">
+                        <a href="#" onClick={() => this.getTweetsByUser(user)} >
                           <span>Tweets<br/></span>
                           <span className="user-stats-tweets">10</span>
                         </a>
@@ -213,7 +213,7 @@ class Feed extends React.Component {
                 <div className="trends col-xs-12">
                   <div className="col-xs-12">
                     <div className="trends-header">
-                      <span>Trends</span><span> &#183; </span><small><a href="">Change</a></small>
+                      <span>Trends</span><span> &#183; </span><small><a href="#">Change</a></small>
                     </div>
                     <ul className="trends-list">
                       <li><a href="#">#Ruby</a></li>
@@ -249,9 +249,9 @@ class Feed extends React.Component {
             </div>
           </div>
         </div>
-        <div>
+        <footer className='text-center'>
           <span className="mr-3 text-secondary"><a href="https://github.com/Valatulkas" target="_blank" rel="noopener noreferrer">JFerg</a></span>
-        </div>
+        </footer>
       </React.Fragment>
     )
   }
