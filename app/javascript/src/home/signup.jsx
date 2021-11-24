@@ -1,7 +1,7 @@
 import React, { lazy } from 'react';
 import ReactDOM from 'react-dom';
 import Login from './login';
-import { safeCredentials, handleErrors, getAuthenticityToken } from '@utils/fetchHelper';
+import { safeCredentials, handleErrors } from '@utils/fetchHelper';
 
 class Signup extends React.Component {
     state = {
@@ -16,7 +16,7 @@ class Signup extends React.Component {
         })
     }
     signup = (e) => {
-        if (e) { e.preventDeafult(); }
+        if (e) { e.preventDefault(); }
         this.setState({
             error: '',
         });
@@ -30,18 +30,18 @@ class Signup extends React.Component {
                 }
             })
         }))
-            .then(handleErrors)
-            .then(getAuthenticityToken)
-            .then(data => {
-                if (data.user) {
-                    this.login();
-                }
+        .then(handleErrors)
+        .then(data => {
+            console.log(data)
+            if (data.user) {
+                // this.login();
+            }
+        })
+        .catch(error => {
+            this.setState({
+                error: 'Could not sign up.',
             })
-            .catch(error => {
-                this.setState({
-                    error: 'Could not sign up.',
-                })
-            })
+        })
     }
     login = (e) => {
         if (e) { e.preventDefault(); }
@@ -52,7 +52,7 @@ class Signup extends React.Component {
             method: 'POST',
             body: JSON.stringify({
                 user: {
-                    email: this.state.email,
+                    username: this.state.username,
                     password: this.state.password,
                 }
             })
@@ -77,7 +77,7 @@ class Signup extends React.Component {
         return (
             <React.Fragment>
                 <form onSubmit={this.signup}>
-                    <p><strong>New to Twitter?</strong><span> Sign Up</span></p>
+                    <p><strong>New to Twitter? aaa</strong><span> Sign Up</span></p>
                     <input name='username' type='text' className='form-control mb-3' placeholder='Username' vlaue={username} onChange={this.handleChange} required />
                     <input name='email' type='text' className='form-control mb-3' placeholder='Email' value={email} onChange={this.handleChange} required />
                     <input name='password' type='text' className='form-control mb-3' placeholder='Password' value={password} onChange={this.handleChange} required />

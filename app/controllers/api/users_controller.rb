@@ -1,7 +1,7 @@
 module Api
     class UsersController < ApplicationController
         def create
-            @user = User.new(user_params)
+            @user = User.create(user_params)
 
             if @user
                 render 'api/users/create.jbuilder'
@@ -16,7 +16,7 @@ module Api
         private
 
             def user_params
-                params.require(:user).permit(:password, :username)
+                params.require(:user).permit(:password, :username, :email)
             end
     end
 end

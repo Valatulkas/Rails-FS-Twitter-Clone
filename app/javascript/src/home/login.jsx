@@ -16,7 +16,6 @@ class Login extends React.Component {
 
     // Log In
     login = (e) => {
-        getAuthenticityToken();
         if (e) { e.preventDefault(); }
         this.setState({
             error: 'Could not sign in...',
