@@ -12,11 +12,11 @@ module Api
 
                 render json: {
                     success: true
-                }
+                }, status: 200
             else
                 render json: {
                     success: false
-                }
+                }, status: 404
             end
         end
 

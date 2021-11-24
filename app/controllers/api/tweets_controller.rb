@@ -26,10 +26,11 @@ module Api
             
                 if @tweet.save
                     render json: {
-                    tweet: {
-                        username: user.username,
-                        message: 'Test Message'
-                    }
+                        tweet: {
+                            id: @tweet.id,
+                            username: user.username,
+                            message: @tweet.message
+                        }
                     }
                 else
                     render json: { success: false }
@@ -56,7 +57,6 @@ module Api
 
             def tweet_params
                 params.require(:tweet).permit(:message)
-                params.require(:tweet).permit(:id)
             end
     end
 end
