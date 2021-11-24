@@ -18,9 +18,6 @@ class Login extends React.Component {
     login = (e) => {
         getAuthenticityToken();
         if (e) { e.preventDefault(); }
-        this.setState({
-            error: 'Could not sign in...',
-        });
         fetch('/api/sessions', safeCredentials({
             method: 'POST',
             body: JSON.stringify({

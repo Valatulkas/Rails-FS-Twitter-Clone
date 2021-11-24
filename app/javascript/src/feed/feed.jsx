@@ -44,7 +44,7 @@ class Feed extends React.Component {
     fetch('/api/tweets', safeCredentials({
       method: "POST",
       body: JSON.stringify({
-        tweets: {
+        tweet: {
           username: this.state.tweets.username,
           message: this.state.tweets.message,
         }
