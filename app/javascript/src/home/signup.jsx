@@ -1,7 +1,7 @@
 import React, { lazy } from 'react';
 import ReactDOM from 'react-dom';
 import Login from './login';
-import { safeCredentials, handleErrors } from '@utils/fetchHelper';
+import { safeCredentials, handleErrors, getAuthenticityToken } from '@utils/fetchHelper';
 
 class Signup extends React.Component {
     state = {
@@ -31,6 +31,7 @@ class Signup extends React.Component {
             })
         }))
             .then(handleErrors)
+            .then(getAuthenticityToken)
             .then(data => {
                 if (data.user) {
                     this.login();
@@ -57,6 +58,7 @@ class Signup extends React.Component {
             })
         }))
             .then(handleErrors) 
+            .then(getAuthenticityToken)
             .then(data => {
                 if(data.success) {
                     const params = new URLSearchParams(window.location.search);

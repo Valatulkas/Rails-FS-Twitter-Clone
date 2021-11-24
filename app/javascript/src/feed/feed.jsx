@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { handleErrors, safeCredentials } from '@utils/fetchHelper';
+import { handleErrors, safeCredentials, getAuthenticityToken } from '@utils/fetchHelper';
 import './feed.scss';
 
 class Feed extends React.Component {
@@ -23,6 +23,7 @@ class Feed extends React.Component {
     this.setState({
         error: 'Could not sign out...',
     });
+    getAuthenticityToken();
     fetch('/api/sessions', safeCredentials({
         method: 'DELETE',
     }))
@@ -45,10 +46,9 @@ class Feed extends React.Component {
       body: JSON.stringify({
         tweets: {
           username: this.state.tweets.username,
-          id: this.state.tweets.id,
           message: this.state.tweets.message,
         }
-      })
+      }),
     }))
       .then(handleErrors)
       .catch(error => {
@@ -117,6 +117,7 @@ class Feed extends React.Component {
     this.setState({
       error: '',
     });
+    getAuthenticityToken();
     fetch('/api/tweets/' + id, safeCredentials({
       method: 'DELETE',
     }))
@@ -237,7 +238,7 @@ class Feed extends React.Component {
                           return (
                             <div key={tweet.id} className='mt-3'>
                               <a href={`/tweets/${tweet.usename}`}>{tweet.username}</a>
-                              <a href={`/tweets/${tweet.id}`}>@{tweet.id}</a>
+                              <a href={`/tweets/${tweet.username}`}>@{tweet.username}</a>
                               <p>{tweet.message}</p>
                               <button onClick={() => this.deleteTweet(tweet.id)} className='btn btn-danger'>Delete</button>
                             </div>

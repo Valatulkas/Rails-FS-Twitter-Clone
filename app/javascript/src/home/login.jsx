@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { safeCredentials, handleErrors } from '@utils/fetchHelper';
+import { safeCredentials, handleErrors, getAuthenticityToken } from '@utils/fetchHelper';
                 
 class Login extends React.Component {
     state = {
@@ -16,6 +16,7 @@ class Login extends React.Component {
 
     // Log In
     login = (e) => {
+        getAuthenticityToken();
         if (e) { e.preventDefault(); }
         this.setState({
             error: 'Could not sign in...',
@@ -32,7 +33,9 @@ class Login extends React.Component {
             .then(handleErrors)
             .then(data => {
                 if(data.success) {
-                    window.location.replace('/feed');
+                    const params = new URLSearchParams(window.location.search);
+                    const redirect_url = params.get('redirect_url') || '/feed';
+                    window.location = redirect_url;
                 }
             })
     }
