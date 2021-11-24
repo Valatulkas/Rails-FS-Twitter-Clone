@@ -44,7 +44,7 @@ class Login extends React.Component {
                     <p><strong>Already on Twitter?</strong><span> Sign In</span></p>
                     <input name='username' type='text' className='form-control mb-3' placeholder='Username' value={username} onChange={this.handleChange} required />
                     <input name='password' type='text' className='form-control mb-3' placeholder='Password' value={password} onChange={this.handleChange} required />
-                    <button type='submit' className='btn btn-warning btn-block pl-3'>Log In</button>
+                    <button type='submit' className='btn btn-info btn-block pl-3'>Log In</button>
                     {error && <p className='text-danger mt-2'>{error}</p>}
                     <a href="#">Forgot password?</a>
                 </form>

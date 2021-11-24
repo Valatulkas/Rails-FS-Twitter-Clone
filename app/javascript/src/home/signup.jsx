@@ -1,6 +1,5 @@
 import React, { lazy } from 'react';
 import ReactDOM from 'react-dom';
-import Login from './login';
 import { safeCredentials, handleErrors } from '@utils/fetchHelper';
 
 class Signup extends React.Component {
