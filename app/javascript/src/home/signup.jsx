@@ -33,7 +33,9 @@ class Signup extends React.Component {
         .then(data => {
             console.log(data)
             if (data.user) {
-                // this.login();
+                const params = new URLSearchParams(window.location.search);
+                const redirect_url = params.get('redirect_url') || '/feed';
+                window.location = redirect_url;
             }
         })
         .catch(error => {
