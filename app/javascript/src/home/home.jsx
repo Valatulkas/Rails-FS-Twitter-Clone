@@ -18,26 +18,6 @@ class Home extends React.Component {
           authenticated: data.authenticated,
         })
       })
-      var backgroundURL = [
-        "<%= asset_path 'background_2.png' %>",
-        "<%= asset_path 'background_3.jpg' %>",
-        "<%= asset_path 'background_1.png' %>"
-      ]
-      var backStep = 0;
-    
-      var backgroundTimer = setInterval(function(){
-        backStep++;
-        if(backStep == backgroundURL.length) {
-          backStep = 0;
-        };
-        var imageUrl = backgroundURL[backStep];
-        setTimeout(function(){
-          $('#homeback').fadeOut(1000, function(){
-            $('#homeback').css('background-image', 'url(' + imageUrl + ')');
-            $('#homeback').fadeIn(1000);
-          });
-        });
-      }, 10000);
   }
 
   render () {
