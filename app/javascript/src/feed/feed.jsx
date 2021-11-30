@@ -64,6 +64,7 @@ class Feed extends React.Component {
           error: 'Could not post tweet..'
         })
       })
+      indexTweets();
   }
 
   // Index Tweets

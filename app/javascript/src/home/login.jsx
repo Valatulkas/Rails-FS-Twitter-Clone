@@ -48,7 +48,7 @@ class Login extends React.Component {
                             <input name='password' type='text' className='form-control mb-3' placeholder='Password' value={password} onChange={this.handleChange} required />
                         </div>
                         
-                        <button type='submit' id='login-button'className='col-xs-3 col-xs-offset-1 btn btn-info btn-block pl-3'>Log In</button>
+                        <button type='submit' id='login-button'className='col-xs-3 col-xs-offset-1 btn btn-primary btn-block pl-3'>Log In</button>
                         {error && <p className='text-danger mt-2'>{error}</p>}
                         <a href="#" className='forgot-button'><small>Forgot password...?</small></a>
                     </form>
