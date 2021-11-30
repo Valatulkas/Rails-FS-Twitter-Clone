@@ -34,13 +34,20 @@ class Home extends React.Component {
                   language: <strong>English</strong><span className='caret'></span>
                 </a>
                 <ul className='dropdown-menu row' role='menu'>
-                <li className="col-xs-12"><a href="#">Bahasa Malaya</a></li>
+                  <li className="col-xs-12"><a href="#">Bahasa Malaya</a></li>
+                  <hr className='py-0 my-0'/>
                   <li className="col-xs-12"><a href="#">Dansk</a></li>
+                  <hr className='py-0 my-0'/>
                   <li className="col-xs-12"><a href="#">English</a></li>
+                  <hr className='py-0 my-0'/>
                   <li className="col-xs-12"><a href="#">Japanese</a></li>
+                  <hr className='py-0 my-0'/>
                   <li className="col-xs-12"><a href="#">Greek</a></li>
+                  <hr className='py-0 my-0'/>
                   <li className="col-xs-12"><a href="#">Swahili</a></li>
+                  <hr className='py-0 my-0'/>
                   <li className="col-xs-12"><a href="#">Icelandic</a></li>
+                  <hr className='py-0 my-0'/>
                   <li className="col-xs-12"><a href="#">Russian</a></li>
                 </ul>
               </li>

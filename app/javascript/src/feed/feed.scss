@@ -29,6 +29,43 @@ nav>form>input, nav>form>button {
     margin-right: 290px;
 }
 
+ul {
+    padding: 0;
+    list-style: none;
+  }
+  
+  ul li {
+    display: block;
+    position: relative;
+    line-height: 21px;
+    text-align: left;
+  }
+  
+  ul li a {
+    display: block;
+    padding: 8px 8px;
+    color: rgb(63, 63, 63);
+    text-decoration: none;
+  }
+  
+  ul li a:hover {
+    color: rgb(0, 0, 0);
+    background: white;
+  }
+  
+  ul li ul.dropdown-menu {
+    min-width: 100%;
+    background: white;
+    display: none;
+    position: absolute;
+    z-index: 999;
+    left: 0;
+  }
+  
+  ul li:hover ul.dropdown-menu {
+    display: block;
+  }
+
 .profileContent, .trends {
     padding: 10px;
     background-color: white;

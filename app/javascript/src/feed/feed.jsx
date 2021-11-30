@@ -156,11 +156,14 @@ class Feed extends React.Component {
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span id='user-icon'>User</span></a>
                 <ul className="dropdown-menu row" role="menu">
                   <li ><a href="#" className="username">User</a></li>
+                  <hr className='py-0 my-0'/>
                   <li ><a href="#">Lists</a></li>
                   <li ><a href="#">Help</a></li>
+                  <hr className='py-0 my-0'/>
                   <li ><a href="#">Keyboard shortcuts</a></li>
                   <li ><a href="#">Settings</a></li>
-                  <li ><button onClick={this.logout}>Log Out</button></li>
+                  <hr className='py-0 my-0'/>
+                  <li ><button onClick={this.logout} className='btn btn-default'>Log Out</button></li>
                 </ul>
               </li>
             </ul>
