@@ -146,24 +146,13 @@ class Feed extends React.Component {
     const { tweets, newTweet } = this.state;
     return (
       <React.Fragment>
-        <nav className='navbar navbar-fixed-top'>
-          <div className='container'>
-            <div className='navbar-header'>
-              <h1>Twitter Feed Page</h1>
-              <a className="navbar-brand" href="#">
-                <i className="fa fa-twitter"></i>
-              </a>
-            </div>
-            <div className='search-bar nav navbar-right'>
-              <div className='input-group'>
-                <input type="text" className="form-control search-input" placeholder="Search for..." />
-                <span className="input-group-btn">
-                  <button onClick={() => this.getTweetByKeyword(keyword)} className="btn btn-basic">Go!</button>
-                </span>
-              </div>
-            </div>
-            <ul className='nav navbar-nav navbar-right'>
-              <li className='dropdown'>
+        <nav className='navbar sticky-top'>
+          <a className='navbar-brand' href='#'><h6>tweeeeets</h6></a>
+          <form className='form-inline'>
+            <input type="text" className="form-control mr-sm-2 search-input my-2" placeholder="Search for..." />
+            <button onClick={() => this.getTweetByKeyword(keyword)} className="btn btn-outline-secondary my-2 mr-5">Go!</button>
+            <ul>
+              <li className='dropdown mt-2'>
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span id='user-icon'>User</span></a>
                 <ul className="dropdown-menu row" role="menu">
                   <li ><a href="#" className="username">User</a></li>
@@ -175,7 +164,7 @@ class Feed extends React.Component {
                 </ul>
               </li>
             </ul>
-          </div>
+          </form>
         </nav>
 
         <div className='main'>
@@ -240,9 +229,14 @@ class Feed extends React.Component {
                     return (
                     <div key={tweet.id} className='tweet'>
                       <a href={`/tweets/${tweet.usename}`} id='space'>{tweet.username}</a>
-                      <a href={`/tweets/${tweet.username}`}>@{tweet.username}</a>
-                      <p>{tweet.message}</p>
-                      <button onClick={() => this.deleteTweet(tweet.id)} className='btn btn-danger' id='tweet-button'>Delete</button>
+                      <a href={`/tweets/${tweet.username}`} id='username'><small>@{tweet.username}</small></a>
+                      <p className='mt-2'>
+                        {tweet.message}
+                        <div className='button-float'>
+                          <button onClick={() => this.deleteTweet(tweet.id)} className='btn btn-danger btn-sm' id='tweet-button'>Delete</button>
+                        </div>
+                      </p>
+                      
                     </div>
                     );
                   })}

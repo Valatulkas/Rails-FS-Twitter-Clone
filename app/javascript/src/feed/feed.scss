@@ -8,6 +8,26 @@
   padding-top: 20px;
   padding-bottom: 40px;
 }
+nav {
+    background-color: white;
+    height: 66px;
+}
+
+nav>form {
+    display: inline-flex;
+}
+
+nav>form>input, nav>form>button {
+    height: 34px;
+}
+
+.navbar-brand {
+    margin-left: 320px;
+}
+
+.form-inline {
+    margin-right: 290px;
+}
 
 .profileContent, .trends {
     padding: 10px;
@@ -16,14 +36,21 @@
 }
 
 .user-stats {
-    display: inline-block;
+    display: inline;
 }
 
-.user-stats>.col-3>a, .user-field>a {
+.user-stats>.col-3>a, .user-field>a, nav>form>ul>li>a, .trends-header>small>a, .trends-list>li>a, .tweet>a {
     text-decoration: none;
 }
 
-.user-field>a {
+.tweet>a {
+    color: black;
+}
+.tweet>a>small {
+    color: rgb(114, 114, 114);
+}
+
+.user-field>a, #user-icon {
     color: rgb(43, 42, 42);
 }
 
@@ -32,15 +59,19 @@
     color: rgb(119, 144, 145);
 }
 
+.trends-list>li>a, .trends-header>small>a, .user-stats-tweets, .user-stats-following, .user-stats-followers {
+    color: rgb(107, 128, 168);
+}
+
 .trends-header {
-    color: rgb(101, 122, 122);
+    color: rgb(84, 87, 87);
 }
 
 .pull-right {
     margin-left: 420px;
 }
 
-.trends-list {
+.trends-list, nav>form>ul {
     list-style: none;
 }
 
@@ -63,4 +94,9 @@
     background-color: white;
     margin-top: 1px;
     padding: 6px 10px 10px 6px;
+}
+
+.button-float {
+    text-align: right;
+    margin-top: -40px;
 }
