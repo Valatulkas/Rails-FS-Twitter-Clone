@@ -59,12 +59,17 @@ class Feed extends React.Component {
       }),
     }))
       .then(handleErrors)
+      .then(data => {
+        if(data.success) {
+          this.indexTweets(tweet)
+        }
+      })
       .catch(error => {
         this.setState({
           error: 'Could not post tweet..'
         })
       })
-      indexTweets();
+      
   }
 
   // Index Tweets
@@ -221,8 +226,7 @@ class Feed extends React.Component {
 
               <div className="col-12 col-md-5 post-tweet-box">
                 <form onSubmit={this.postTweet} id='post-tweet'>
-                  <textarea type="text" className="form-control post-input" rows="3" placeholder="What's happening?" onChange={this.onNewTweetChange} value={newTweet}></textarea>
-                  
+                  <textarea type="text" className="form-control post-input" rows="3" placeholder="What's happening?" onChange={this.onNewTweetChange} value={newTweet}></textarea>                  
                   <div className="pull-right">
                     <span className="post-char-counter">142</span>
                     <button type='submit' className="btn btn-primary" id="post-tweet-btn">Tweet</button>
