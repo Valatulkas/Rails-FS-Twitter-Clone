@@ -1,17 +1,25 @@
-h1 {
-    color: red;
-}
-
-#log-in-btn {
-  display: inline-block;
-}
-.intro, .login, .signup {
-  width: 50%;
-}
-.home-card {
-  float: left;
+body {
+  margin: 20px;
 }
 
 .main {
   background-color: aquamarine;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+p {
+  font-size: 20px;
+}
+.login, .signup {
+  padding: 10px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+}
+.forgot-button {
+  margin-left: 12px;
+}
+
+#signup-button {
+  margin-left: 120px;
 }

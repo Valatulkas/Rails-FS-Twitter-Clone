@@ -77,13 +77,15 @@ class Signup extends React.Component {
         const { email, username, password, error } = this.state;
         return (
             <React.Fragment>
-                <form onSubmit={this.signup}>
-                    <p><strong>New to Twitter? aaa</strong><span> Sign Up</span></p>
-                    <input name='username' type='text' className='form-control mb-3' placeholder='Username' vlaue={username} onChange={this.handleChange} required />
-                    <input name='email' type='text' className='form-control mb-3' placeholder='Email' value={email} onChange={this.handleChange} required />
-                    <input name='password' type='text' className='form-control mb-3' placeholder='Password' value={password} onChange={this.handleChange} required />
-                    <button type='submit' className='btn btn-warning btn-block'>Sign up for Twitter!</button> 
-                </form>
+                <div className='signup'>
+                    <form onSubmit={this.signup}>
+                        <p><strong>New to Twitter?</strong><span> Sign Up</span></p>
+                        <input name='username' type='text' className='form-control mb-3' placeholder='Username' vlaue={username} onChange={this.handleChange} required />
+                        <input name='email' type='text' className='form-control mb-3' placeholder='Email' value={email} onChange={this.handleChange} required />
+                        <input name='password' type='text' className='form-control mb-3' placeholder='Password' value={password} onChange={this.handleChange} required />
+                        <button type='submit' id='signup-button' className='btn btn-warning btn-block'>Sign up for Twitter!</button> 
+                    </form>
+                </div>
             </React.Fragment>
         )
     }
