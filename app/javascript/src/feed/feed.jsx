@@ -146,7 +146,7 @@ class Feed extends React.Component {
     const { tweets, newTweet } = this.state;
     return (
       <React.Fragment>
-        <nav className='navbar navbar-fixed-top nav'>
+        <nav className='navbar navbar-fixed-top'>
           <div className='container'>
             <div className='navbar-header'>
               <h1>Twitter Feed Page</h1>
@@ -181,51 +181,53 @@ class Feed extends React.Component {
         <div className='main'>
           <div className='container'>
             <div className='row'>
-              <div className='col-xs-3 profile'>
+              <div className='col-0 col-md-1'></div>
+              <div className='col-3 profile ml-0 pl-0'>
                 <div className='profileCard col-xs-12'>
                   <div className='profileContent'>
                     <div className='user-field col-xs-12'>
-                      <button className="username" onClick={() => this.getTweetsByUser(tweets.userName)} >User</button><br/>
+                      <a className="username" onClick={() => this.getTweetsByUser(tweets.userName)} ><strong>User</strong></a><br/>
                       <a className="screenName mt-3" href='#'><small>@User</small></a>
                     </div>
-                    <div className='user-stats'>
-                      <div className='col-xs-4'>
+                    <div className='row user-stats mb-2 mt-2'>
+                      <div className='col-3'>
                         <a href="#" onClick={() => this.getTweetsByUser(user)} >
-                          <span>Tweets<br/></span>
-                          <span className="user-stats-tweets">10</span>
+                          <span className='user-stat'>TWEETS<br/></span>
+                          <span className="user-stats-tweets"><small>10</small></span>
                         </a>
                       </div>
-                      <div className='col-xs-4'>
+                      <div className='col-3'>
                         <a href="">
-                          <span>Following<br/></span>
-                          <span className="user-stats-following">0</span>
+                          <span className='user-stat'>FOLLOWING<br/></span>
+                          <span className="user-stats-following"><small>0</small></span>
                         </a>
                       </div>
-                      <div className="col-xs-4">
+                      <div className="col-3">
                         <a href="">
-                          <span>Followers<br/></span>
-                          <span className="user-stats-followers">0</span>
+                          <span className='user-stat'>FOLLOWERS<br/></span>
+                          <span className="user-stats-followers"><small>0</small></span>
                         </a>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="trends col-xs-12">
+                <div className="col-xs-12 trends mt-4">
                   <div className="col-xs-12">
                     <div className="trends-header">
                       <span>Trends</span><span> &#183; </span><small><a href="#">Change</a></small>
                     </div>
-                    <ul className="trends-list">
-                      <li><a href="#">#Ruby</a></li>
-                      <li><a href="#">#React</a></li>
-                      <li><a href="#">#Rails</a></li>
-                      <li><a href="#">#API</a></li>
+                    <ul className="trends-list mt-3 pl-0">
+                      <li><a href="#"><small>#Ruby</small></a></li>
+                      <li><a href="#"><small>#React</small></a></li>
+                      <li><a href="#"><small>#Rails</small></a></li>
+                      <li><a href="#"><small>#API</small></a></li>
                     </ul>
                   </div>
                 </div>
               </div>
-              <div className="col-md-5 post-tweet-box">
-                <form onSubmit={this.postTweet}>
+
+              <div className="col-12 col-md-5 post-tweet-box">
+                <form onSubmit={this.postTweet} id='post-tweet'>
                   <textarea type="text" className="form-control post-input" rows="3" placeholder="What's happening?" onChange={this.onNewTweetChange} value={newTweet}></textarea>
                   
                   <div className="pull-right">
@@ -233,14 +235,14 @@ class Feed extends React.Component {
                     <button type='submit' className="btn btn-primary" id="post-tweet-btn">Tweet</button>
                   </div>
                 </form>
-                <div className="feed mt-4">
+                <div className="feed">
                   {tweets.map(tweet => {
                     return (
-                    <div key={tweet.id} className='mt-3'>
-                      <a href={`/tweets/${tweet.usename}`}>{tweet.username}</a>
+                    <div key={tweet.id} className='tweet'>
+                      <a href={`/tweets/${tweet.usename}`} id='space'>{tweet.username}</a>
                       <a href={`/tweets/${tweet.username}`}>@{tweet.username}</a>
                       <p>{tweet.message}</p>
-                      <button onClick={() => this.deleteTweet(tweet.id)} className='btn btn-danger'>Delete</button>
+                      <button onClick={() => this.deleteTweet(tweet.id)} className='btn btn-danger' id='tweet-button'>Delete</button>
                     </div>
                     );
                   })}
@@ -249,9 +251,6 @@ class Feed extends React.Component {
             </div>
           </div>
         </div>
-        <footer className='text-center'>
-          <span className="mr-3 text-secondary"><a href="https://github.com/Valatulkas" target="_blank" rel="noopener noreferrer">JFerg</a></span>
-        </footer>
       </React.Fragment>
     )
   }

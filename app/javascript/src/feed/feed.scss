@@ -1,3 +1,66 @@
 .main {
-    background-color: aquamarine;
+  min-height: calc(100vh - 51px);
+  background-image: url(https://abs.twimg.com/images/themes/theme1/bg.png);
+  background-position: left 40px;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-color: #C0DEED;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.profileContent, .trends {
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.user-stats {
+    display: inline-block;
+}
+
+.user-stats>.col-3>a, .user-field>a {
+    text-decoration: none;
+}
+
+.user-field>a {
+    color: rgb(43, 42, 42);
+}
+
+.user-stat {
+    font-size: 10px;
+    color: rgb(119, 144, 145);
+}
+
+.trends-header {
+    color: rgb(101, 122, 122);
+}
+
+.pull-right {
+    margin-left: 420px;
+}
+
+.trends-list {
+    list-style: none;
+}
+
+#space {
+    margin-right: 6px;
+}
+
+.post-tweet-box {
+    margin-left: 60px;
+}
+
+#post-tweet {
+    background: #C0DEED;
+    border: 1px solid #BFE0EC;
+    border-radius: 5px 5px 0 0;
+    padding: 10px 8px 8px 20px;
+}
+
+.tweet {
+    background-color: white;
+    margin-top: 1px;
+    padding: 6px 10px 10px 6px;
 }
