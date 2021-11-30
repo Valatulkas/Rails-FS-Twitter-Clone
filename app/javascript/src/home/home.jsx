@@ -4,6 +4,8 @@ import { handleErrors } from '@utils/fetchHelper';
 import Login from './login';
 import Signup from './signup';
 import './home.scss';
+import image from './images/background_1.png'; 
+
 
 class Home extends React.Component {
   state = {
@@ -51,13 +53,18 @@ class Home extends React.Component {
                 </ul>
               </div>
           </nav>
-          <div className='main'>
+          <div className='main' style={{ backgroundImage:`url(${image})`,backgroundRepeat:"no-repeat",backgroundSize:"cover", minHeight:'100vh', minWidth:'100vw', position:'fixed' }}>
             <div className='container'>
               <div className='row'>
                 <div className='col-0 col-md-1'></div>
                 <div className='col-12 col-md-5 homecard ml-3'>
                     <h1 className='mb-4'><strong>Welcome to Twitter.</strong></h1>
-                    <p>Connect with your friends &#8212; and other fascinating people. Get in-the-moment updates on the things that interest you. And watch events unfold, in real time, from every angle.</p>                  
+                    <p>Connect with your friends &#8212; and other fascinating people. Get in-the-moment updates on the things that interest you. And watch events unfold, in real time, from every angle.</p>    
+                    <div className='ferg-info'>
+                      <a href='https://github.com/Valatulkas' target='_blank' id='ferg'>jFerg - FullStack Twitter Clone Project</a>
+                      <br />
+                      <a href='altcademy.com' target='_blank' id='alt'>photo by @Hackpacific</a>
+                    </div>              
                 </div>
                 <div className='col-0 col-md-1'></div>
                 <div className='col-12 col-md-3 user-action mr-3'>
@@ -69,9 +76,6 @@ class Home extends React.Component {
               </div>
             </div>
           </div>
-          <footer className='text-center'>
-            <span className="mr-3 text-secondary"><a href="https://github.com/Valatulkas" target="_blank" rel="noopener noreferrer">JFerg</a></span>
-          </footer>
         </React.Fragment>
       );
     

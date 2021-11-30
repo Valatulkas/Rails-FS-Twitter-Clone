@@ -1,9 +1,10 @@
 body {
   margin: 20px;
 }
-
+nav {
+  height: 60px;
+}
 .main {
-  background-color: aquamarine;
   padding-top: 80px;
   padding-bottom: 80px;
   font-family: Arial, Helvetica, sans-serif;
@@ -22,4 +23,18 @@ p {
 
 #signup-button {
   margin-left: 120px;
+}
+
+.homecard {
+  color: white;
+}
+.ferg-info {
+  margin-top: 200px;
+}
+a#ferg {
+  text-decoration: none;
+  color: white;
+}
+a#alt {
+  color: white;
 }

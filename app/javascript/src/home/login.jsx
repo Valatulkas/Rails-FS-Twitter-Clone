@@ -42,7 +42,7 @@ class Login extends React.Component {
             <React.Fragment>
                 <div className='login'>
                     <form onSubmit={this.login}>
-                        <p><strong>Already on Twitter?</strong><span> Sign In</span></p>
+                        <h6><strong>Already on Twitter?</strong><span className='ml-3'> Sign In</span></h6>
                         <input name='username' type='text' className='form-control mb-3' placeholder='Username' value={username} onChange={this.handleChange} required />
                         <div className='col-xs-8 form-group'>
                             <input name='password' type='text' className='form-control mb-3' placeholder='Password' value={password} onChange={this.handleChange} required />
