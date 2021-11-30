@@ -61,7 +61,7 @@ class Feed extends React.Component {
       .then(handleErrors)
       .then(data => {
         this.setState({
-          tweets: this.state.tweets.concat(data.tweet)
+          tweets: this.state.tweets.concat(data.tweet),
         })
       })
       .catch(error => {
@@ -113,6 +113,9 @@ class Feed extends React.Component {
       method: 'GET',
     }))
       .then(handleErrors)
+      //.then(data => {
+
+      //})
   } 
 
   // Search Tweets by Keyword
@@ -124,6 +127,11 @@ class Feed extends React.Component {
       method: 'GET',
     }))
       .then(handleErrors)
+      //.then(data => {
+      //  this.setState({
+
+      //  })
+      //})
   }
 
   // Delete Tweets
@@ -138,7 +146,7 @@ class Feed extends React.Component {
       .then(handleErrors)
       .then(data => {
         if(data.success) {
-          indexTweets()
+          this.indexTweets()
         }
       })
       .catch(error => {
