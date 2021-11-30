@@ -26,32 +26,25 @@ class Home extends React.Component {
     const { authenticated } = this.state;
       return (
         <React.Fragment>
-          <nav className='navbar navbar-fixed-top navbar default'>
-              <div className='container'>
-                <div className='navbar-header'>
-                  <h1>Twitter Clone</h1>
-                  <a className="navbar-brand" href="#">
-                    <i className="fa fa-twitter"></i>
-                  </a>
-                </div>
-                <ul className='nav navbar-nav navbar-right'>
-                  <li className='dropdown'>
-                    <a className='dropdown-toggle' data-toggle='dropdown' role='button' href='#'>
-                      language: <strong>English</strong><span className='caret'></span>
-                    </a>
-                    <ul className='dropdown-menu row' role='menu'>
-                      <li className="col-xs-12"><a href="#">Bahasa Malaya</a></li>
-                      <li className="col-xs-12"><a href="#">Dansk</a></li>
-                      <li className="col-xs-12"><a href="#">English</a></li>
-                      <li className="col-xs-12"><a href="#">Japanese</a></li>
-                      <li className="col-xs-12"><a href="#">Greek</a></li>
-                      <li className="col-xs-12"><a href="#">Swahili</a></li>
-                      <li className="col-xs-12"><a href="#">Icelandic</a></li>
-                      <li className="col-xs-12"><a href="#">Russian</a></li>
-                    </ul>
-                  </li>
+          <nav className='navbar sticky-top'>
+            <a className='navbar-brand' href='#'><h6>Twitter Clone</h6></a>   
+            <ul className='language'>
+              <li className='dropdown'>
+                <a className='dropdown-toggle' data-toggle='dropdown' role='button' href='#'>
+                  language: <strong>English</strong><span className='caret'></span>
+                </a>
+                <ul className='dropdown-menu row' role='menu'>
+                <li className="col-xs-12"><a href="#">Bahasa Malaya</a></li>
+                  <li className="col-xs-12"><a href="#">Dansk</a></li>
+                  <li className="col-xs-12"><a href="#">English</a></li>
+                  <li className="col-xs-12"><a href="#">Japanese</a></li>
+                  <li className="col-xs-12"><a href="#">Greek</a></li>
+                  <li className="col-xs-12"><a href="#">Swahili</a></li>
+                  <li className="col-xs-12"><a href="#">Icelandic</a></li>
+                  <li className="col-xs-12"><a href="#">Russian</a></li>
                 </ul>
-              </div>
+              </li>
+            </ul>
           </nav>
           <div className='main' style={{ backgroundImage:`url(${image})`,backgroundRepeat:"no-repeat",backgroundSize:"cover", minHeight:'100vh', minWidth:'100vw', position:'fixed' }}>
             <div className='container'>

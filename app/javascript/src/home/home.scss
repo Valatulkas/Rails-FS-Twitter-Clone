@@ -2,13 +2,29 @@ body {
   margin: 20px;
 }
 nav {
-  height: 60px;
+  background-color: white;
+  height: 66px;
 }
 .main {
   padding-top: 80px;
   padding-bottom: 80px;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.navbar-brand {
+  margin-left: 320px;
+}
+
+.language {
+  margin-right: 290px;
+  list-style: none;
+}
+
+.language>li>a {
+  text-decoration: none;
+  color: rgb(63, 63, 63);
+}
+
 p {
   font-size: 20px;
 }
