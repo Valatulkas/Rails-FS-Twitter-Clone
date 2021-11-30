@@ -60,9 +60,9 @@ class Feed extends React.Component {
     }))
       .then(handleErrors)
       .then(data => {
-        if(data.success) {
-          this.indexTweets(tweet)
-        }
+        this.setState({
+          tweets: this.state.tweets.concat(data.tweet)
+        })
       })
       .catch(error => {
         this.setState({
@@ -138,7 +138,7 @@ class Feed extends React.Component {
       .then(handleErrors)
       .then(data => {
         if(data.success) {
-          indexTweets();
+          indexTweets()
         }
       })
       .catch(error => {
