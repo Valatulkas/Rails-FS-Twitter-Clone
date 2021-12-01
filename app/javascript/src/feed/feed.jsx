@@ -53,6 +53,7 @@ class Feed extends React.Component {
     if (e) { e.preventDefault(); }
     this.setState({
       error: '',
+      newTweet: ''
     });
     fetch('/api/tweets', safeCredentials({
       method: "POST",
