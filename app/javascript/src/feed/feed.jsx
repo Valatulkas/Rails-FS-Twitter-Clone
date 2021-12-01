@@ -16,6 +16,10 @@ class Feed extends React.Component {
   }
 
   componentDidMount() {
+    this.fetchTweets();
+  }
+
+  fetchTweets = () => {
     fetch('/api/tweets')
       .then(handleErrors)
       .then(data => {
@@ -118,22 +122,6 @@ class Feed extends React.Component {
       //})
   } 
 
-  // Search Tweets by Keyword
-  getTweetByKeyword = (keyword) => {
-    this.setState({
-      error: 'Cannot retrieve tweets by keyword...'
-    });
-    fetch('/api/tweets/search/' + keyword, safeCredentials({
-      method: 'GET',
-    }))
-      .then(handleErrors)
-      //.then(data => {
-      //  this.setState({
-
-      //  })
-      //})
-  }
-
   // Delete Tweets
   deleteTweet = (id) => {
     this.setState({
@@ -145,9 +133,7 @@ class Feed extends React.Component {
     }))
       .then(handleErrors)
       .then(data => {
-        if(data.success) {
-          this.indexTweets()
-        }
+        this.fetchTweets();
       })
       .catch(error => {
         this.setState({
@@ -164,7 +150,7 @@ class Feed extends React.Component {
           <a className='navbar-brand' href='#'><h6>tweeeeets</h6></a>
           <form className='form-inline'>
             <input type="text" className="form-control mr-sm-2 search-input my-2" placeholder="Search for..." />
-            <button onClick={() => this.getTweetByKeyword(keyword)} className="btn btn-outline-secondary my-2 mr-5">Go!</button>
+            <button className="btn btn-outline-secondary my-2 mr-5">Go!</button>
             <ul>
               <li className='dropdown mt-2'>
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span id='user-icon'>User</span></a>
@@ -192,12 +178,12 @@ class Feed extends React.Component {
                 <div className='profileCard col-xs-12'>
                   <div className='profileContent'>
                     <div className='user-field col-xs-12'>
-                      <a className="username" onClick={() => this.getTweetsByUser(tweets.userName)} ><strong>User</strong></a><br/>
+                      <a className="username" href={`/feed/@${tweets.username}`} ><strong>User</strong></a><br/>
                       <a className="screenName mt-3" href='#'><small>@User</small></a>
                     </div>
                     <div className='row user-stats mb-2 mt-2'>
                       <div className='col-3'>
-                        <a href="#" onClick={() => this.getTweetsByUser(user)} >
+                        <a href="#">
                           <span className='user-stat'>TWEETS<br/></span>
                           <span className="user-stats-tweets"><small>10</small></span>
                         </a>
@@ -244,8 +230,8 @@ class Feed extends React.Component {
                   {tweets.map(tweet => {
                     return (
                     <div key={tweet.id} className='tweet'>
-                      <a href={`/tweets/${tweet.usename}`} id='space'>{tweet.username}</a>
-                      <a href={`/tweets/${tweet.username}`} id='username'><small>@{tweet.username}</small></a>
+                      <a href={`/feed/@${tweet.username}`} id='space'>{tweet.username}</a>
+                      <a href={`/feed/@${tweet.username}`} id='username'><small>@{tweet.username}</small></a>
                       <p className='mt-2'>
                         {tweet.message}
                         <div className='button-float'>
