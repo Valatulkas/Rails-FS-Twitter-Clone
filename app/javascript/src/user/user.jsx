@@ -1,15 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { handleErrors, safeCredentials } from '@utils/fetchHelper';
-import './user.scss';
+import '../..home/home.scss';
 
 class UserFeed extends React.Component {
     state = {
         tweets: [],
+        newTweet: '',
     }
 
     componentDidMount() {
-      fetch('/api/feed/:' + username) 
+      this.fetchTweets();
+    }
+
+    fetchTweets = () => {
+      fetch('/api/feed/' + username) 
         .then(handleErrors)
         .then(data => {
           console.log(data)
@@ -18,13 +23,41 @@ class UserFeed extends React.Component {
           })
         })
     }
+    // Post Tweets
+    postTweet = (e) => {
+      if (e) { e.preventDefault(); }
+      this.setState({
+        error: '',
+        newTweet: ''
+      });
+      fetch('/api/feed/' + username, safeCredentials({
+        method: "POST",
+        body: JSON.stringify({
+          tweet: {
+            message: this.state.newTweet,
+          }
+        }),
+      }))
+        .then(handleErrors)
+        .then(data => {
+          this.setState({
+            tweets: this.state.tweets.concat(data.tweet),
+          })
+        })
+        .catch(error => {
+          this.setState({
+            error: 'Could not post tweet..'
+          })
+        })
+        
+    }
 
     // Index Tweets
     indexTweets = () => {
       this.setState({
         error: '',
       });
-      fetch('/api/feed/:' + username, safeCredentials({
+      fetch('/api/feed/' + username, safeCredentials({
         method: 'GET',
       }))
         .then(handleErrors)
@@ -98,7 +131,7 @@ class UserFeed extends React.Component {
                     <div className='profileCard col-xs-12'>
                       <div className='profileContent'>
                         <div className='user-field col-xs-12'>
-                          <a className="username" href={`/tweets/${tweet.username}`}><strong>User</strong></a><br/>
+                          <a className="username" href={`/tweets/@${tweets.username}`}><strong>User</strong></a><br/>
                           <a className="screenName mt-3" href='#'><small>@User</small></a>
                         </div>
                         <div className='row user-stats mb-2 mt-2'>
@@ -150,8 +183,8 @@ class UserFeed extends React.Component {
                       {tweets.map(tweet => {
                         return (
                         <div key={tweet.id} className='tweet'>
-                          <a href={`/tweets/${tweet.usename}`} id='space'>{tweet.username}</a>
-                          <a href={`/tweets/${tweet.username}`} id='username'><small>@{tweet.username}</small></a>
+                          <a href={`/feed/@${tweet.usename}`} id='space'>{tweet.username}</a>
+                          <a href={`/feed/@${tweet.username}`} id='username'><small>@{tweet.username}</small></a>
                           <p className='mt-2'>
                             {tweet.message}
                             <div className='button-float'>

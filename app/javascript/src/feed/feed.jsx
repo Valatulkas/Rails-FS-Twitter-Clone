@@ -110,18 +110,17 @@ class Feed extends React.Component {
   }
 
   // Index Tweets by User 
-  getTweetsByUser = (userName) => {
-    this.setState({
-      error: 'Cannot retrieve tweets by User...'
-    });
-    fetch('/api/users/' + userName + '/tweets', safeCredentials({
-      method: 'GET',
-    }))
-      .then(handleErrors)
-      //.then(data => {
-
-      //})
-  } 
+  //getTweetsByUser = (userName) => {
+  //  this.setState({
+  //    error: 'Cannot retrieve tweets by User...'
+  //  });
+  //  fetch('/api/users/' + userName + '/tweets', safeCredentials({
+  //    method: 'GET',
+  //  }))
+  //    .then(handleErrors)
+  //    //.then(data => {
+  //})
+  //} 
 
   // Delete Tweets
   deleteTweet = (id) => {
@@ -231,8 +230,8 @@ class Feed extends React.Component {
                   {tweets.map(tweet => {
                     return (
                     <div key={tweet.id} className='tweet'>
-                      <a href={`/feed/@${tweet.username}`} id='space'>{tweet.username}</a>
-                      <a href={`/feed/@${tweet.username}`} id='username'><small>@{tweet.username}</small></a>
+                      <a href={`/feed/${tweet.username}`} id='space'>{tweet.username}</a>
+                      <a href={`/feed/${tweet.username}`} id='username'><small>@{tweet.username}</small></a>
                       <p className='mt-2'>
                         {tweet.message}
                         <div className='button-float'>
