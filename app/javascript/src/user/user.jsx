@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { handleErrors, safeCredentials } from '@utils/fetchHelper';
-import '../..home/home.scss';
+import './user.scss';
 
 class UserFeed extends React.Component {
     state = {
         tweets: [],
         newTweet: '',
+        username: '',
+    }
+
+    handleChange = (e) => {
+      this.setState({
+        [e.target.name]: e.target.value,
+      })
     }
 
     componentDidMount() {
@@ -96,7 +103,7 @@ class UserFeed extends React.Component {
     }
 
     render () {
-        const { tweets } = this.state;
+        const { tweets, newTweet, username } = this.state;
         return (
           <React.Fragment>
             <nav className='navbar sticky-top'>
@@ -173,7 +180,7 @@ class UserFeed extends React.Component {
     
                   <div className="col-12 col-md-5 post-tweet-box">
                     <form onSubmit={this.postTweet} id='post-tweet'>
-                      <textarea type="text" className="form-control post-input" rows="3" placeholder="What's happening?" onChange={this.onNewTweetChange} value={newTweet}></textarea>                  
+                      <textarea type="text" className="form-control post-input" rows="3" placeholder="What's happening?" onChange={this.handleChange} value={newTweet}></textarea>                  
                       <div className="pull-right">
                         <span className="post-char-counter">142</span>
                         <button type='submit' className="btn btn-primary" id="post-tweet-btn">Tweet</button>
