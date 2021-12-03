@@ -1,19 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { handleErrors, safeCredentials } from '@utils/fetchHelper';
+import { handleErrors } from '@utils/fetchHelper';
 import './user.scss';
 
 class UserFeed extends React.Component {
     state = {
-        tweets: [],
-        newTweet: '',
-        username: '',
-    }
-
-    handleChange = (e) => {
-      this.setState({
-        [e.target.name]: e.target.value,
-      })
+        user: {},
+        loading: true,
     }
 
     componentDidMount() {
@@ -21,63 +14,15 @@ class UserFeed extends React.Component {
     }
 
     fetchTweets = () => {
-      fetch('/api/feed/' + username) 
+      fetch('/api/feed/${this.props.user_username}') 
         .then(handleErrors)
         .then(data => {
           console.log(data)
           this.setState({
-            tweets: data.tweets,
+            user: data.user,
+            loading: false,
           })
         })
-    }
-    // Post Tweets
-    postTweet = (e) => {
-      if (e) { e.preventDefault(); }
-      this.setState({
-        error: '',
-        newTweet: ''
-      });
-      fetch('/api/feed/' + username, safeCredentials({
-        method: "POST",
-        body: JSON.stringify({
-          tweet: {
-            message: this.state.newTweet,
-          }
-        }),
-      }))
-        .then(handleErrors)
-        .then(data => {
-          this.setState({
-            tweets: this.state.tweets.concat(data.tweet),
-          })
-        })
-        .catch(error => {
-          this.setState({
-            error: 'Could not post tweet..'
-          })
-        })
-        
-    }
-
-    // Index Tweets
-    indexTweets = () => {
-      this.setState({
-        error: '',
-      });
-      fetch('/api/feed/' + username, safeCredentials({
-        method: 'GET',
-      }))
-        .then(handleErrors)
-        .then(data => {
-          this.setState({
-            tweets: this.state.tweets.concat(data.tweets),
-          })
-        })
-        .catch(error => {
-          this.setState({
-            error: 'Could not post tweets..'
-          })
-      })
     }
 
     // Delete Tweets
@@ -103,7 +48,13 @@ class UserFeed extends React.Component {
     }
 
     render () {
-        const { tweets, newTweet, username } = this.state;
+        const { user, loading } = this.state;
+        if (loading) {
+          return <p>loading ...</p>
+        };
+
+        const { tweet, username } = user
+
         return (
           <React.Fragment>
             <nav className='navbar sticky-top'>
@@ -113,7 +64,7 @@ class UserFeed extends React.Component {
                 <button className="btn btn-outline-secondary my-2 mr-5">Go!</button>
                 <ul>
                   <li className='dropdown mt-2'>
-                    <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span id='user-icon'>User</span></a>
+                    <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span id='user-icon'>{username}</span></a>
                     <ul className="dropdown-menu row" role="menu">
                       <li ><a href="#" className="username">User</a></li>
                       <hr className='py-0 my-0'/>
@@ -123,7 +74,7 @@ class UserFeed extends React.Component {
                       <li ><a href="#">Keyboard shortcuts</a></li>
                       <li ><a href="#">Settings</a></li>
                       <hr className='py-0 my-0'/>
-                      <li ><button onClick={this.logout} className='btn btn-default'>Log Out</button></li>
+                      <li ><button className='btn btn-default'>Log Out</button></li>
                     </ul>
                   </li>
                 </ul>
@@ -138,7 +89,7 @@ class UserFeed extends React.Component {
                     <div className='profileCard col-xs-12'>
                       <div className='profileContent'>
                         <div className='user-field col-xs-12'>
-                          <a className="username" href={`/tweets/@${tweets.username}`}><strong>User</strong></a><br/>
+                          <a className="username" href={`/tweets/@${username}`}><strong>{username}</strong></a><br/>
                           <a className="screenName mt-3" href='#'><small>@User</small></a>
                         </div>
                         <div className='row user-stats mb-2 mt-2'>
@@ -179,15 +130,8 @@ class UserFeed extends React.Component {
                   </div>
     
                   <div className="col-12 col-md-5 post-tweet-box">
-                    <form onSubmit={this.postTweet} id='post-tweet'>
-                      <textarea type="text" className="form-control post-input" rows="3" placeholder="What's happening?" onChange={this.handleChange} value={newTweet}></textarea>                  
-                      <div className="pull-right">
-                        <span className="post-char-counter">142</span>
-                        <button type='submit' className="btn btn-primary" id="post-tweet-btn">Tweet</button>
-                      </div>
-                    </form>
                     <div className="feed">
-                      {tweets.map(tweet => {
+                      {tweet.map(tweet => {
                         return (
                         <div key={tweet.id} className='tweet'>
                           <a href={`/feed/@${tweet.usename}`} id='space'>{tweet.username}</a>
@@ -212,8 +156,11 @@ class UserFeed extends React.Component {
     }
 }
 document.addEventListener('DOMContentLoaded', () => {
+  const node = document.getElementById('params');
+  const data = JSON.parse(node.getAttribute('data-params'));
+
   ReactDOM.render(
-    <UserFeed />,
+    <UserFeed user_username={data.user_username} />,
     document.body.appendChild(document.createElement('div')),
   )
 })
