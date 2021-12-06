@@ -15,7 +15,7 @@ class UserFeed extends React.Component {
 
     fetchTweets = () => {
       console.log(this.props.username)
-      fetch('/api/tweets/${this.props.username}') 
+      fetch(`/api/tweets/${this.props.username}`) 
         .then(handleErrors)
         .then(data => {
           console.log(data)
