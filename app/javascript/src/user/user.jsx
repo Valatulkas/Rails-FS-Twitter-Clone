@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { handleErrors } from '@utils/fetchHelper';
-import './user.scss';
+import '../feed/feed.scss';
 
 class UserFeed extends React.Component {
     state = {
