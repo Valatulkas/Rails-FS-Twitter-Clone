@@ -5,7 +5,7 @@ import './user.scss';
 
 class UserFeed extends React.Component {
     state = {
-        user: {},
+        tweets: [],
         loading: true,
     }
 
@@ -14,12 +14,13 @@ class UserFeed extends React.Component {
     }
 
     fetchTweets = () => {
-      fetch('/api/feed/${this.props.user_username}') 
+      console.log(this.props.username)
+      fetch(`/api/tweets/${this.props.username}`) 
         .then(handleErrors)
         .then(data => {
           console.log(data)
           this.setState({
-            user: data.user,
+            tweets: data.tweets,
             loading: false,
           })
         })
@@ -48,12 +49,10 @@ class UserFeed extends React.Component {
     }
 
     render () {
-        const { user, loading } = this.state;
+        const { tweets, loading } = this.state;
         if (loading) {
           return <p>loading ...</p>
         };
-
-        const { tweet, username } = user
 
         return (
           <React.Fragment>
@@ -64,7 +63,7 @@ class UserFeed extends React.Component {
                 <button className="btn btn-outline-secondary my-2 mr-5">Go!</button>
                 <ul>
                   <li className='dropdown mt-2'>
-                    <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span id='user-icon'>{username}</span></a>
+                    <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span id='user-icon'>username</span></a>
                     <ul className="dropdown-menu row" role="menu">
                       <li ><a href="#" className="username">User</a></li>
                       <hr className='py-0 my-0'/>
@@ -89,7 +88,7 @@ class UserFeed extends React.Component {
                     <div className='profileCard col-xs-12'>
                       <div className='profileContent'>
                         <div className='user-field col-xs-12'>
-                          <a className="username" href={`/tweets/@${username}`}><strong>{username}</strong></a><br/>
+                          <a className="username" href={`/tweets/@`}><strong>username</strong></a><br/>
                           <a className="screenName mt-3" href='#'><small>@User</small></a>
                         </div>
                         <div className='row user-stats mb-2 mt-2'>
@@ -131,17 +130,17 @@ class UserFeed extends React.Component {
     
                   <div className="col-12 col-md-5 post-tweet-box">
                     <div className="feed">
-                      {tweet.map(tweet => {
+                      {tweets.map(tweet => {
                         return (
                         <div key={tweet.id} className='tweet'>
                           <a href={`/feed/@${tweet.usename}`} id='space'>{tweet.username}</a>
                           <a href={`/feed/@${tweet.username}`} id='username'><small>@{tweet.username}</small></a>
-                          <p className='mt-2'>
+                          <div className='mt-2'>
                             {tweet.message}
                             <div className='button-float'>
                               <button onClick={() => this.deleteTweet(tweet.id)} className='btn btn-danger btn-sm' id='tweet-button'>Delete</button>
                             </div>
-                          </p>
+                          </div>
                           
                         </div>
                         );
@@ -160,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const data = JSON.parse(node.getAttribute('data-params'));
 
   ReactDOM.render(
-    <UserFeed user_username={data.user_username} />,
+    <UserFeed username={data.username} />,
     document.body.appendChild(document.createElement('div')),
   )
 })

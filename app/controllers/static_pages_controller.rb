@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
     end
 
     def user
-      @data = { user_username: params[:username] }.to_json
+      @data = { username: params[:username] }.to_json
       render 'user'
     end
   
