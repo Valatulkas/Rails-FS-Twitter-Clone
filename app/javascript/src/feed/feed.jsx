@@ -97,30 +97,6 @@ class Feed extends React.Component {
         })
       })
   }
-  
-  // Index Tweets by ID
-  getTweetById = (id) => {
-    this.setState({
-      error: 'Cannot retrieve tweet by ID...'
-    });
-    fetch('/api/tweets/' + id, safeCredentials({
-      method: 'GET',
-    }))
-      .then(handleErrors)
-  }
-
-  // Index Tweets by User 
-  //getTweetsByUser = (userName) => {
-  //  this.setState({
-  //    error: 'Cannot retrieve tweets by User...'
-  //  });
-  //  fetch('/api/users/' + userName + '/tweets', safeCredentials({
-  //    method: 'GET',
-  //  }))
-  //    .then(handleErrors)
-  //    //.then(data => {
-  //})
-  //} 
 
   // Delete Tweets
   deleteTweet = (id) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { handleErrors } from '@utils/fetchHelper';
+import { handleErrors, safeCredentials } from '@utils/fetchHelper';
 import '../feed/feed.scss';
 
 class UserFeed extends React.Component {
@@ -38,7 +38,7 @@ class UserFeed extends React.Component {
         .then(handleErrors)
         .then(data => {
           if(data.success) {
-            this.indexTweets()
+            this.fetchTweets()
           }
         })
         .catch(error => {
@@ -57,7 +57,7 @@ class UserFeed extends React.Component {
         return (
           <React.Fragment>
             <nav className='navbar sticky-top'>
-              <a className='navbar-brand' href='#'><h6>tweeeeets</h6></a>
+              <a className='navbar-brand' href={`/feed`}><h6>tweeeeets</h6></a>
               <form className='form-inline'>
                 <input type="text" className="form-control mr-sm-2 search-input my-2" placeholder="Search for..." />
                 <button className="btn btn-outline-secondary my-2 mr-5">Go!</button>
