@@ -1,3 +1,10 @@
-import feed from './feed';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Feed from './feed';
 
-export default feed;
+document.addEventListener('DOMContentLoaded', () => {
+    ReactDOM.render(
+        <Feed />,
+        document.body.appendChild(document.createElement('div')),
+    )
+})

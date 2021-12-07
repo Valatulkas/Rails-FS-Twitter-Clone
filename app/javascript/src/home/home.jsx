@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { handleErrors } from '@utils/fetchHelper';
 import Login from './login';
 import Signup from './signup';
@@ -82,9 +81,4 @@ class Home extends React.Component {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <Home />,
-    document.body.appendChild(document.createElement('div')),
-  )
-})
+export default Home;

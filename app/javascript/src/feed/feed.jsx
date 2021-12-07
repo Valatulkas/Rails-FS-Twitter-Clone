@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { handleErrors, safeCredentials } from '@utils/fetchHelper';
 import './feed.scss';
 
@@ -228,9 +227,4 @@ class Feed extends React.Component {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <Feed />,
-    document.body.appendChild(document.createElement('div')),
-  )
-})
+export default Feed;
