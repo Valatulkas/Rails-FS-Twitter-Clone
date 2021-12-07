@@ -1,1 +1,1 @@
-import '@src/feed';
+import '@src/feed/index';
