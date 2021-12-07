@@ -1,3 +1,10 @@
-import home from './home';
+import ReactDOM from 'react-dom';
+import React from 'react';
+import Home from './home';
 
-export default home;
+document.addEventListener('DOMContentLoaded', () => {
+  ReactDOM.render(
+    <Home />,
+    document.body.appendChild(document.createElement('div')),
+  )
+})

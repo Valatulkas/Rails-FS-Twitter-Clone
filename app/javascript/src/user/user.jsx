@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { handleErrors, safeCredentials } from '@utils/fetchHelper';
 import '../feed/feed.scss';
 
@@ -154,12 +153,5 @@ class UserFeed extends React.Component {
         )
     }
 }
-document.addEventListener('DOMContentLoaded', () => {
-  const node = document.getElementById('params');
-  const data = JSON.parse(node.getAttribute('data-params'));
 
-  ReactDOM.render(
-    <UserFeed username={data.username} />,
-    document.body.appendChild(document.createElement('div')),
-  )
-})
+export default UserFeed;
