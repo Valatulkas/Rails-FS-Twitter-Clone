@@ -76,7 +76,7 @@ class Signup extends React.Component {
             <React.Fragment>
                 <div className='signup'>
                     <form onSubmit={this.signup}>
-                        <h6><strong>New to Twitter?</strong><span className='ml-3'>Sign Up</span></h6>
+                        <h6><strong>New to Twitter? </strong><span> Sign Up</span></h6>
                         <input name='username' type='text' className='form-control mb-3' placeholder='Username' vlaue={username} onChange={this.handleChange} required />
                         <input name='email' type='text' className='form-control mb-3' placeholder='Email' value={email} onChange={this.handleChange} required />
                         <input name='password' type='text' className='form-control mb-3' placeholder='Password' value={password} onChange={this.handleChange} required />

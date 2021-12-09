@@ -60,7 +60,7 @@ class Home extends React.Component {
     }
     
     backgroundScheduler_1();
-    
+
     const { authenticated } = this.state;
       return (
         <React.Fragment>
@@ -104,7 +104,7 @@ class Home extends React.Component {
                     <div className='ferg-info'>
                       <a href='https://github.com/Valatulkas' target='_blank' id='ferg'>jFerg - FullStack Twitter Clone Project</a>
                       <br />
-                      <a href='altcademy.com' target='_blank' id='alt'>photo by @Hackpacific</a>
+                      <a href='altcademy.com' target='_blank' id='alt'>photos by @Hackpacific</a>
                     </div>              
                 </div>
                 <div className='col-0 col-md-1'></div>
