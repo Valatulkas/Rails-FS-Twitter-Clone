@@ -60,6 +60,7 @@ class Home extends React.Component {
     }
     
     backgroundScheduler_1();
+    
     const { authenticated } = this.state;
       return (
         <React.Fragment>
