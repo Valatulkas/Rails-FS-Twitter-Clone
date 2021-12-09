@@ -33,9 +33,7 @@ class Signup extends React.Component {
         .then(data => {
             console.log(data)
             if (data.user) {
-                const params = new URLSearchParams(window.location.search);
-                const redirect_url = params.get('redirect_url') || '/feed';
-                window.location = redirect_url;
+                this.login();
             }
         })
         .catch(error => {
@@ -59,7 +57,6 @@ class Signup extends React.Component {
             })
         }))
             .then(handleErrors) 
-            .then(getAuthenticityToken)
             .then(data => {
                 if(data.success) {
                     const params = new URLSearchParams(window.location.search);
